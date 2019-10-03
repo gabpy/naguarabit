@@ -1,0 +1,10 @@
+<!--prueba para subir archivo-->
+      <div>
+ 				<input type="file" nv-file-select uploader="uploader"/><br/>
+        <ul>sss
+            <li ng-repeat="item in uploader.queue">
+                Nombre archivo: <span ng-bind="item.file.name"></span><br/>
+                <button ng-click="item.upload()">upload</button>
+            </li>
+        </ul>
+      </div>

@@ -1,0 +1,12 @@
+querys.txt
+---
+
+listar pagos en destino de una transaccion especifica:
+SELECT *
+FROM pago_destino a
+INNER JOIN transacciones b ON a.id_transaccion = b.id
+WHERE id_transaccion=4
+
+---
+totalizar pagos en destino:
+SELECT count(*) as nro_pagos, sum(a.monto) FROM pago_destino a INNER JOIN transacciones b ON a.id_transaccion = b.id WHERE id_transaccion=4

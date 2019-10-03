@@ -1,0 +1,9 @@
+modulo para subir imagenes a la carpeta images dentro de la carpeta donde esta este archivo
+
+<!--prueba upload files
+TOMADO DE ejemplo:
+https://stackoverflow.com/questions/18571001/file-upload-using-angularjs
+
+implementado en un fiddle:
+https://jsfiddle.net/vince123/8d18tsey/31/
+-->

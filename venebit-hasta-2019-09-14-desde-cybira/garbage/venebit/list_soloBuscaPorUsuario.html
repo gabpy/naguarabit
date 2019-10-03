@@ -1,0 +1,74 @@
+<!--template de lista de transacciones-->
+<div>
+<p><b>Transacciones</b> | Buscar por usuario:
+  <input type="text" ng-model="busq1" auto-focus>
+</p>
+
+<table width="100%" class="table table-sm table-hover">
+  <thead class="thead-light">
+    <!--
+  	<tr class="table-active">
+      <th colspan="8">Datos</th>
+      <th colspan="3" style="text-align:center; color: orange; background-color: #17a2b8">Acciones</th>
+	 </tr>
+   -->
+  <tr>
+    <!--TODO. agrupar estas columnas en las filas, tipo lista, una arriba de otra, o colocar botones que se ocultan dependiendo del status de la transacciones-->
+    <th>#</th>
+    <th>Fecha/Hora</th>
+	  <th>Usuario</th>
+    <th style="text-align:right">Monto /</th>
+    <th>Origen</th>
+    <th style="text-align:right">Monto /</th>
+    <th>Destino</th>
+    <th>Estatus</th>
+    <th style="text-align:center; color: white; background-color: #17a2b8">Pago Origen</th>
+    <th style="text-align:center; color: white; background-color: #17a2b8">Pago Destino</th>
+    <th style="text-align:center; color: white; background-color: #17a2b8">Datos Completos</th>
+    <!-- title="Ver todos los datos de la transaccion" -->
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="x in resultados | filter:busq1">
+    <td>{{x.id}}</td>
+    <td>{{x.date_created}}</td>
+    <!--TODO. print detalles de usuario en el tooltip o en un div oculto, que se muestre cuando se hace click o hover sobre el login-->
+    <td><a target="_BLANK" title="Aqui en el titulo poner detalles de usuario, traer en la data" href="#!/user/{{ x.login }}">{{ x.login }}</a></td>
+    <!--
+    <td><a target="_BLANK" title="Ver datos del usuario" href="#!/user/{{ x.nombre }}">{{ x.nombre }}</a></td>
+    -->
+    <td style="text-align:right"><span style="color:green">
+      {{ x.origen_monto | number: 0.00}}</span><!--aqui debe ir el simbolo de la moneda, y no el pais--></td>
+    <td><a target="_BLANK" title="Ver pago en origen" href="#!/pais/{{ x.origen_codpais }}">{{ x.origen_codpais }}</a></td>
+    <td style="text-align:right; color:green">{{ x.destino_monto | number: 0.00}}</td> <!--aqui debe ir el simbolo de la moneda, y no el pais-->
+    <td><a target="_BLANK" title="Ver pago en destino" href="#!/pais/{{ x.destino_codpais }}">{{ x.destino_codpais}}</a></td>
+    <!--status-->
+    <td style="text-align:center"><a target="_BLANK" href="!/transaccProcesarStatus/{{x.id}}">{{x.status}}</a</td>
+    <td style="text-align:center"><a target="_BLANK" href="!/transaccPagoOrigen/{{x.id}}">Ver</a></td>
+    <td style="text-align:center"><a target="_BLANK" href="!/transaccPagoDestino/{{x.id}}">Ver</a></td>
+    <td style="text-align:center"><a target="_BLANK"  href="!/transacc/{{x.id}}">Ver</a></td>
+    <!--TODO. analizar cuando usar target="_BLANK"-->
+    <!--TODO, colocar link para eliminar-->
+  </tr>
+  </tbody>
+</table>
+
+<!--
+<div>
+  <button class="button2" type="button" ng-click="new()">Agregar</button>
+</div>
+-->
+
+</div>
+
+<!--
+  <a title="Agregar registro" href="#!/user/new">Agregar</a>
+    <td><a title="Ver detalles" href="#!/user/?login={{ x.login }}">{{ x.nombre }}</a></td>
+    <td><a title="Enviar mensaje" href="#!/user/?login={{ x.login }}">{{ x.email }}</a></td>
+    <td><a href="#!/user/{{ x.login }}">Ver más detalles</a></td>
+-->
+
+    <!--TODO. agregar datos y hacer link a datos por pais y ciudad
+    <td><a title="(+) Listar usuarios de este pais" href="#!/user/">{{ x.pais }}</a></td>
+    <td><a title="(+) Listar usuarios de esta ciudad" href="#!/user/">{{ x.ciudad }}</a></td>
+    -->

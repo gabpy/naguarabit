@@ -1,0 +1,36 @@
+
+        <span style="font-weight: bold">Instrucciones</span>
+        <br/>
+        <span ng-show="paso==1"><b>Paso 1</b><br>
+          Indique el monto en -Guaranies- a enviar. <br>
+          También puede indicar el monto en Bs que quiere que lleguen a la cuenta bancaria.
+          La calculadora le indicará los monto equivalentes.<br>
+          Límites monto <b>Gs:</b> 12.000 a 5.000.000<br>
+          Límites monto <b>$USD:</b> 2 a 150 dólares.<br>
+        </span>
+
+        <span ng-show="paso==2"><b>Paso 2</b><br>
+          Indique sus datos, so n usados para comunicarnos con usted, de manera oportuna.
+          No los compartiremomos con nadie, respetamos su privacidad.
+        </span>
+
+        <span ng-show="paso==3"><b>Paso 3</b>
+          <br>Indique los datos de la cuenta bancaria a la que haremos la transferencia. <br>
+          Si quiere transferir a mas de una cuenta, presione el boton <b>Agregar Otra Cuenta</b>, luego de grabar la primera cuenta.
+
+        </span>
+
+        <span ng-show="paso==4"><b>Paso 2.</b><br>
+          Luego de realizar el depósito, suministras los datos y envia foto o imagen escaneada del voucher de depósito, para verificación y posterior envío de los fondos a la cuenta especificada en <span>{{data.nombre_pais2}}</span></span>
+
+        <span ng-show="paso==5">Instrucciones del paso 5. Revise todos los detalles.<br>
+          Al presionar CONFIRMAR se guardan todos los datos.<br>
+        Se generara un codigo de remesa, el cual va a usar el cliente mas adelante para confirmar su pago.
+</span>
+<!--
+<span>
+  <br><br>
+        Este valor es para pruebas:
+  <input value="1234567890" size="10" style="width: 100px" disabled>
+</span>
+-->

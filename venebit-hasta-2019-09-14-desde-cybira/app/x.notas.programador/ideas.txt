@@ -1,0 +1,7 @@
+IDEAS
+* Integrar aqui la grafica de Yadio-Today, en la Calculadora
+
+*colocar indicadores de paridad.
+ej de :https://bitcoinaverage.om
+widgets
+graficas

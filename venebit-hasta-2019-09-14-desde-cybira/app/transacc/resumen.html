@@ -1,0 +1,53 @@
+  <div><!--<p>This is the partial for view saludo.
+Es la primera vista que se abre.
+
+TODO. llamar esta vista inicio o home</p>
+-->
+
+<!--
+<b><p>BitTrade te dice: <br></b>
+-->
+<form name="form1" align="left" ><!-- novalidate -->
+  <div class="form-group" ng-class="{'has-error': myForm.myDecimal.$invalid}"><!--TODO. colocar bandera --flecha-> bandera-destino-->
+    <h3>Resumen de Transacción</h3>
+    <span>Usuario: <a title="en el tooltip colocar resumen del usuario" href="#!/user/{{ data.login }}">{{data.login}}</a>
+      ({{data.user_nombre}})</span>
+    <br/>
+
+<span>De: <span style="font-weight: bold">{{data.origen_pais_nombre}}</span>
+<br/>
+<span>A: <span style="font-weight: bold">{{data.destino_pais_nombre}}</span></span>
+<br/><br/>
+<span>Monto enviar: </span>
+<!--todo, falta especificar simbolo de moneda-->
+<span style="font-weight: bold">{{(data.origen_monto | number : 0.0) + ' ' + data.origen_simbolo_moneda }}</span>
+<br/>
+<span>Monto recibir: </span>
+<!--todo, falta especificar simbolo de moneda-->
+<span style="font-weight: bold">{{(data.destino_monto | number : 0.0) + ' ' + data.destino_simbolo_moneda}}</span>
+<br>
+</div>
+</form>
+
+<br>
+<!--<h5>Pagos en destino</h5>-->
+<div>
+  <div ng-include="'transacc/destino.html'"></div>
+</div>
+
+</div>
+
+<!--TODO. agregar boton cancelar transaccion-->
+
+<!--TODO.
+Confirma todos los datos relacionados a la transaccion.<br>
+opcional. agregar boton imprimir para generar resumen en texto, o pdf<br>
+
+Al confirmar, el sistema le notificara por correos a los involucrados en el proceso:
+*cliente
+*operador en pais origen<br>
+*operador en pais destino<br>
+</p>
+-->
+
+<!--TODO. mostrar saludo acorde-->

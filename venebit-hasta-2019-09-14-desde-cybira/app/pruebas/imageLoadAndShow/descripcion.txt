@@ -1,0 +1,4 @@
+http://jsfiddle.net/kkhxsgLu/2/
+
+de foro encontrado en:
+https://stackoverflow.com/questions/31665305/angularjs-upload-and-display-image-using-filereader-api-multiple-files

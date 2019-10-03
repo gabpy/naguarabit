@@ -1,0 +1,111 @@
+<!--usando bootstrap-->
+<div class="container">
+  <div class="row">
+    <!--columna 1, izquierda.
+          TODO. pasar las instrucciones a otro archivo
+-->
+    <div class="col-sm-3" style="align-content: left">
+      <h3>Calculadora</h3>
+      <div class="instrucciones">
+        <div ng-include="'calc/instrucciones.html'"></div>
+      </div>
+</div>
+
+<!--Columna 2, centro-->
+  <div class="col-sm-5">
+  <div ng-show="paso==1">
+    <div ng-include="'calc/calculo.html'"></div>    
+</div>
+
+<!--TODO. inyectar cada div desde el controlador a medida que cambia el valor de paso-->
+<!--PASO2 - datos de usuario-->
+<div class="form-group" ng-show="paso==2" ng-class="{'has-error': myForm.myDecimal.$invalid}">
+  <form name="form2"><!-- novalidate -->
+    <h3>Datos de usuario</h3>
+    <div ng-include="'calc/user.html'"></div>
+  </form>
+</div>
+
+<!--PASO3 - pago en destino, cuentas bancarias-->
+<div class="form-group" ng-show="paso==3" ng-class="{'has-error': myForm.myDecimal.$invalid}">
+  <form name="form3"><!-- novalidate -->
+    <h3>Pago en Destino</h3>
+    <div ng-include="'calc/paydestino.html'"></div>
+  </form>
+</div>
+
+<!--PASO4 - pago en origenl, proporcionar los datos para que el usuario pague en el pais origen-->
+<div class="form-group" ng-show="paso==4" ng-class="{'has-error': myForm.myDecimal.$invalid}">
+  <form name="form4"><!-- novalidate -->
+    <h3>Pago en Origen</h3>
+    <div ng-include="'calc/payorigen.html'"></div>
+  </form>
+</div>
+
+<!--PASO5 - pago en origenl, proporcionar los datos para que el usuario pague en el pais origen-->
+<div class="form-group" ng-show="paso==5">
+  <form name="form5"><!-- novalidate -->
+    <h3>Resumen de Transacción</h3>
+    <div ng-include="'calc/resumen.html'"></div>
+  </form>
+</div>
+
+<div class="botones-centrados">
+  <button class="button-centrado" ng-click="goBack()" ng-show="paso>=2">Atrás</button>
+  <button class="button-centrado" ng-click="goNext()" ng-show="paso!=5">Continuar</button>
+  <button class="button-centrado" ng-click="confirm()" ng-show="paso==5"
+  title="Confirmar transacción">CONFIRMAR</button>
+</div>
+</div>
+
+
+
+<!--3era Columna a la derecha-->
+<div class="col-sm-3">
+ <div class="resumen" ng-show="paso>=2 && paso<=4">
+  <b>Resumen</b>
+  <br/>
+  <span id="data.resumen1">Envías:&nbsp;&nbsp;&nbsp;{{(data.monto1 | number : 0.0) + ' ' + data.simbolo_moneda1 }}</span>
+  <br/>
+  <span id="data.resumen1">Recibes: {{(data.monto2 | number : 0.0) + ' ' + data.simbolo_moneda2}}</span>
+  <hr>
+  <!--TODO. colocar bandera --flecha-> bandera-destino-->
+  <span>De: {{data.nombre_pais1}}</span>
+  <br/>
+  <span>A: {{data.nombre_pais2}}</span>
+  <!--TODO. agregar boton cancelar transaccion-->
+</div>
+
+<!--pruebas
+<div class="resumen">
+<hr>
+    {{ saludo}}
+    <h4>DATOS DEBUG: </h4>
+    <p>paso: {{ paso }}</p>
+    <p>modo: {{ modo }}</p>
+    <p>data: {{ data }}</p>
+    <p>user: {{ user }}</p>
+    <p>origen: {{ origen}}</p>
+    <p>destino: {{ destino}}</p>
+</div>
+-->
+
+
+</div>
+
+</div>
+</div>
+
+
+<div>
+
+
+
+<!--
+  <p style="align-content: center; text-align: center;">
+    <a href="#!/calc/2">Siguiente paso &gt;&gt;&gt;</a>
+  </p>
+-->
+
+
+</div>

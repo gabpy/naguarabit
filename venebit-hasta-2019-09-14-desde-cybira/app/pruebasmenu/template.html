@@ -1,0 +1,76 @@
+<!--breadcrumb-->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page"><a href="#">Mi Aplicación</a></li>
+    <!--<li class="breadcrumb-item">Data</li>-->
+  </ol>
+</nav>
+
+<!--menu principal BPM-->
+<div class="card" style="width: 350px">
+  <h5 class="card-header" ng-click="mostrarMenu[0] = !mostrarMenu[0]">Procesos</h5>
+  <div class="card-body" name="m1" ng-show="mostrarMenu[0]">
+    <div><a href="#" class="btn btn-primary">Procesos</a></div>
+    <div><a href="#" class="btn btn-primary">Administración de procesos</a></div>
+    <div><a href="#" class="btn btn-primary">Actividad</a></div>
+    <div><a href="#" class="btn btn-primary">Producto</a></div>
+    <div><a href="#" class="btn btn-primary">Tipo de Proceso</a></div>
+    <div><a href="#" class="btn btn-primary">Categoria de Cliente</a></div>
+    <div><a href="#" class="btn btn-primary">Estados</a></div>
+    <div><a href="#" class="btn btn-primary">Reglas de Negocio</a></div>
+    <div><a href="#" class="btn btn-primary">Formularios</a></div>
+    <div><a href="#" class="btn btn-primary">Formularios Simples</a></div>
+    <div><a href="#" class="btn btn-primary">Motivos de Cancelacion</a></div>
+    <div><a href="#" class="btn btn-primary">Herramientas Gráficas</a></div>
+    <div><a href="#" class="btn btn-primary">Aplicaciones Externas</a></div>
+  </div>
+
+  <h5 class="card-header" ng-click="showMenu(1)">Operativo</h5>
+  <div class="card-body" name="m3" ng-show="mostrarMenu[1]">
+      <div><a href="#" class="btn btn-primary">Grupo Encargado</a></div>
+      <div><a href="#" class="btn btn-primary">Tipo de Usuario</a></div>
+      <div><a href="#" class="btn btn-primary">Usuario</a></div>
+      <div><a href="#" class="btn btn-primary">Directorio Activo</a></div>
+      <div><a href="#" class="btn btn-primary">Roles</a></div>
+      <div><a href="#" class="btn btn-primary">Dependencias</a></div>
+      <div><a href="#" class="btn btn-primary">Usuarios a delegar</a></div>
+      <div><a href="#" class="btn btn-primary">Configuración Contraseña</a></div>
+      <div><a href="#" class="btn btn-primary">Jerarquía Organizacional</a></div>
+  </div>
+
+
+  <h5 class="card-header" ng-click="showMenu(2)">Reportes</h5>
+  <div class="card-body" name="m3" ng-show="mostrarMenu[2]">
+      <div><a href="#" class="btn btn-primary">Reporte de Procesos Registrados</a></div>
+      <div><a href="#" class="btn btn-primary">Procesos Por Tipo y Origen</a></div>
+      <div><a href="#" class="btn btn-primary">Resumen de Procesos por Tipo y Origen</a></div>
+      <div><a href="#" class="btn btn-primary">Actividades por Tipo y Origen</a></div>
+      <div><a href="#" class="btn btn-primary">Resumen de Reclamo por Operador</a></div>
+      <div><a href="#" class="btn btn-primary">Por Producto y Tipo de Consulta</a></div>
+      <div><a href="#" class="btn btn-primary">Tiempo de Respuesta Esperado</a></div>
+      <div><a href="#" class="btn btn-primary">Procesos a Cargo con Retraso</a></div>
+      <div><a href="#" class="btn btn-primary">Activ. aut. en Ejecución</a></div>
+  </div>
+
+  <h5 class="card-header" ng-click="showMenu(3)">Jasper Reports</h5>
+  <div class="card-body" name="m3" ng-show="mostrarMenu[3]">
+      <div><a href="#" class="btn btn-primary">Categorías de Reportes</a></div>
+      <div><a href="#" class="btn btn-primary">Reportes</a></div>
+  </div>
+
+  <h5 class="card-header" ng-click="showMenu(4)">Aplicativo</h5>
+  <div class="card-body" name="m3" ng-show="mostrarMenu[4]">
+      <!--<div><a class="btn btn-primary">Mi Aplicación</a></div>-->
+      <div href="#"><button type="button" class="btn btn-primary btn-lg btn-block">Mi Aplicación</button></div>
+  </div>
+
+  <!--
+  <h5 class="card-header" ng-click="showMenu(1)">Mi Aplicativo</h5>
+  <div class="card-body" name="m3" ng-show="mostrarMenu[1]">
+    <h5 class="card-title">Special title treatment</h5>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+-->
+</div>

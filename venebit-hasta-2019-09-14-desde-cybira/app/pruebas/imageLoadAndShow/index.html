@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="pruebas/imageLoadAndShow/estilos.css">
+
+<div>
+	<!--TODO. agregar boton para borrar imagenes, una por una-->
+	<div style="display: block">
+		<input type='file' ng-model-instant onchange="angular.element(this).scope().imageUpload(this)" />
+		<button ng-if="stepsModel.length>0" ng-click="removeAll()" class="btn btn-primary btn-sm">Borrar Todas</button>
+		<button ng-if="stepsModel.length>0" ng-click="removeAll()" class="btn btn-success btn-sm">Enviar</button>
+	</div>
+
+	<div ng-repeat="step in stepsModel">
+		<img class="thumb" ng-src="{{step}}" title="Comprobante {{$index + 1}}" />
+	</div>
+
+	<!--numero de imagenes-->
+	<input type="hidden" ng-model="stepsModel.length">
+
+</div>
