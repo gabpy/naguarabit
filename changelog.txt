@@ -18,5 +18,4 @@ llamada de api para listar tasas de cambios
 calcula en desarrollo
 
 ---
-
-s
+aqui debe ir el commit de la carpeta en la pc-2
