@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!--<title>BitTrade-Admin</title>-->
+  <!--<title>Angular-Learning - Admin-Venebit</title>-->
+  <title>Naguarabit - Administrador</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="lib/html5-boilerplate/dist/css/normalize.css">
+  <link rel="stylesheet" href="lib/html5-boilerplate/dist/css/main.css">
+
+  <!--bootstrap-->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!--CSS-->
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/style_lists.css">
+
+  <!--js-->
+  <script src="lib/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+
+  <!--
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-messages.js"></script>
+-->
+
+<!--
+   Font Awesome version 5.11's new icons -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.11.1/css/all.css">
+</head>
+<body>
+  <!--
+  <h1>Angular Tests</h1>
+-->
+<ul class="menu">
+  <li><a href="#!/inicio">Inicio</a></li>
+  <li><a href="#!/pruebas">Pruebas</a></li>
+  <li><a href="#!/usuarios">Usuarios</a></li>
+  <li><a href="#!/paises">Países</a></li>
+  <li><a href="#!/monedas">Monedas</a></li>
+  <li><a href="#!/ciudades">Ciudades</a></li>
+  <li><a href="#!/api">Tasas</a></li>
+  <li><a href="#!/calc">Calculadora</a></li>
+  <li><a href="#!/transacc">Transacciones</a></li>
+    <!--
+    <li><a href="#!/user/gperez">Prueba 1 Usuario</a></li>
+  -->
+ <!--
+    <li><a href="#!/view1">view1</a></li>
+    <li><a href="#!/view2">view2</a></li>
+    <li><a href="#!/saludo">saludo</a></li>
+  -->
+</ul>
+
+
+  <!--
+  <ul class="menu">
+    <li><a href="#!/view1">view1</a></li>
+    <li><a href="#!/view2">view2</a></li>
+  </ul>
+-->
+
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div ng-view></div>
+
+    <br><br><br>
+    <!--TODO. colocar footprint-->
+  <!--
+  <div>BitTrade developing app: v<span app-version></span></div>
+-->
+
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+-->
+<!--angular lib-->
+<script src="lib/angular/angular.js"></script>
+<script src="lib/angular-route/angular-route.js"></script>
+
+<!--scripts angular -->
+<script src="app.js"></script>
+<script src="view1/view1.js"></script>
+<script src="view2/view2.js"></script>
+<script src="pruebas/pruebas.js"></script>
+<script src="inicio/saludo.js"></script>
+<script src="usuarios/usuarios.js"></script>
+<script src="user/user.js"></script>
+<script src="paises/paises.js"></script>
+<script src="pais/pais.js"></script>
+<script src="monedas/monedas.js"></script>
+<script src="monedas/moneda.js"></script>
+<script src="ciudad/ciudades.js"></script>
+<script src="ciudad/ciudad.js"></script>
+<script src="calc/calc.js"></script>
+<script src="api/api.js"></script>
+<script src="transacc/transacc.js"></script>
+<script src="transacc/resumen.js"></script>
+
+<!--js propios-->
+<script src="js/fechas.js"></script>
+<script src="js/codigos.js"></script>
+
+<!--modulos del ejemplo-->
+<script src="core/version/version.js"></script>
+<script src="core/version/version-directive.js"></script>
+<script src="core/version/interpolate-filter.js"></script>
+
+<script src="https://kit.fontawesome.com/3034400118.js" crossorigin="anonymous"></script>
+
+</body>
+</html>

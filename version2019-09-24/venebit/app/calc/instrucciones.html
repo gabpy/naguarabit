@@ -1,0 +1,39 @@
+
+        <span style="font-weight: bold">Instrucciones</span>
+        <br/>
+        <span ng-show="paso==1"><b>Paso 1</b><br>
+          Indique el monto en -Guaranies- a enviar. <br>
+          También puede indicar el monto en Bs que quiere que lleguen a la cuenta bancaria.
+          La calculadora le indicará los monto equivalentes.<br>
+          <b>Límites por transacción</b> <br>
+          <b>$USD:</b> 10 a 500 dólares.<br>
+          (<b>Gs.:</b> 60.000 a 3.000.000)<br>
+        </span>
+
+        <span ng-show="paso==2"><b>Paso 2</b><br>
+          Indique sus datos, so n usados para comunicarnos con usted, de manera oportuna.
+          No los compartiremomos con nadie, respetamos su privacidad.
+        </span>
+
+        <span ng-show="paso==3"><b>Paso 3</b>
+          <br>Indique los datos de la cuenta bancaria a la que haremos la transferencia. <br>
+          Si quiere transferir a mas de una cuenta, presione el boton <b>Agregar Otra Cuenta</b>, luego de grabar la primera cuenta.
+
+        </span>
+
+        <span ng-show="paso==4"><b>Paso 4.</b><br>  
+          Toma nota de estos datos para realizar tu pago a la plataforma en el pais indicado:
+          <!--Luego de realizar el pago, nos indicaras un comprobante (sea foto o imagen escaneada), para verificación y posterior envío de los fondos a la cuenta especificada en 
+          --><span>{{data.nombre_pais1}}</span></span>
+
+        <span ng-show="paso==5">Instrucciones del paso 5. Revise todos los detalles.<br>
+        Al presionar CONFIRMAR se guardan todos los datos.<br/>
+        Se le dará un código de transacción, que va a usar para confirmar su pago.
+        </span>
+<!--
+<span>
+  <br><br>
+        Este valor es para pruebas:
+  <input value="1234567890" size="10" style="width: 100px" disabled>
+</span>
+-->
