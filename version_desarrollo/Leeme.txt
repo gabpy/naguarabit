@@ -1,0 +1,4 @@
+Programación del back-end.
+
+Incluye todo el contenido de la carpeta app, sin incluir la carpeta libr que va dentro de app.
+

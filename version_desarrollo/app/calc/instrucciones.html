@@ -1,0 +1,63 @@
+<!--instrucciones de uso de la calculadora-->
+        <!--span style="font-weight: bold">Instrucciones</span-->
+        <br>
+        <span ng-show="paso==1"><h4>Paso 1</h4><br>
+          Indique el monto a enviar.<br>
+          Puede ingresarlo de 3 formas: <br>
+          1. En monto en la moneda local ({{data.nombre_plural_moneda1}}) <br>
+          2. En Bolívares a recibir(Bs.)<br>
+          3. En dólares ($USD)<br>
+          Al escribir en cualquier moneda, se calculan los montos equivalentes.<br>
+          <!--(<b>Gs.:</b> 60.000 a 3.000.000)<br-->
+        </span>
+        <span ng-show="paso==1"><br>
+          <b>Límites por transacción</b> <br>
+          <span style="color:red"><b>$USD:</b> 10 a 200 dólares.<br></span>
+        </span>
+
+
+        <span ng-show="paso==2"><h4>Paso 2</h4><br>  
+          Elige la forma de pago. Toma nota de estos datos para realizar tu pago a la plataforma.
+          <!--Luego de realizar el pago, nos indicaras un comprobante (sea foto o imagen escaneada), para verificación y posterior envío de los fondos a la cuenta especificada en 
+          -->
+          <!--span>{{data.nombre_pais1}}</span-->
+          </span>
+
+        <span ng-show="paso==3"><h4>Paso 3</h4>
+          <br>
+        Por favor, revise todos los detalles.<br><br>
+        Al PROCEDER se origina una solicitud de operación, para confirmar su pago.<br><br>
+        La tasa de la remesa se mantiene por 90 minutos para que realice el pago.
+        </span>
+
+        <span ng-show="paso==4"><h4>Paso 4</h4>
+          <br>Indique los datos de la cuenta bancaria a la que haremos la transferencia.
+          <!--TODO. agregar esta mejora. para posteriores versiones
+          <br>
+          Si quiere transferir a mas de una cuenta, presione el boton <b>Agregar Otra Cuenta</b>, luego de grabar la primera cuenta.-->
+        </span>
+
+        <span ng-show="paso==5"><b>Paso 5 (opcional)</b><br>
+          Indique datos de usuario para el registro. <br><br>
+          Son usados para comunicarnos con usted, de manera oportuna. <br>
+          No serán compartidos, respetamos su privacidad.<br><br>
+          <i>Si no desea registrarse: <!--br> saltar este paso.--></i>
+          <!--TODO. usar link en vez de botón-->
+          <span class="button-centrado" ng-click="goNext()" ng-show="paso == 5" 
+  title="Saltar este paso">Saltar este Paso</span>
+
+      <br><br>
+          <i>Ya tienes usuario: .<!--br> saltar este paso.--></i>
+          <!--TODO. usar link en vez de botón-->
+          <span class="button-centrado" ng-click="goNext()" ng-show="paso == 5" 
+  title="Acceder a la plataforma">Acceder</span>
+
+        </span>
+
+<!--
+<span>
+  <br><br>
+        Este valor es para pruebas:
+  <input value="1234567890" size="10" style="width: 100px" disabled>
+</span>
+-->
