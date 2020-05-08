@@ -21,17 +21,7 @@ angular.module('myApp.calc', ['ngRoute'])
   });
 }])
 
-/*
-//OPCION NO USADA AHORA
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/calcConfirm', {
-    templateUrl: 'calc/confirmar.html',
-    controller: 'ctrlCalcConfirm'
-  });
-}])
-*/
-
-//directiva para auto-enfocar un input
+//directiva para auto-focus de un input
 .directive('autoFocus', function($timeout) {
   return {
     restrict: 'A',
@@ -51,7 +41,7 @@ angular.module('myApp.calc', ['ngRoute'])
       })
 
 
-//directiva para manejo de input tipo montos
+//directiva para manejo de input tipo montos, permite mostrar punto como separador de miles, cuando se está escribiendo en el input
 .directive('blurToCurrency', function($filter){
   return {
     scope: {
@@ -154,7 +144,7 @@ $scope.initData = function() {
 
   //TODO. sacar la variable formapago del arreglo, usar variable simple
   //forma de pago Deposito Bancario
-  $scope.origen={observ:'',formapago:'DEP', nombrebank:'Itaú', nrocta:'12345678901234567890', nombretitular:'Dina Osma', doctitular:'1234567',
+  $scope.origen={observ:'',formapago:'', nombrebank:'Itaú', nrocta:'12345678901234567890', nombretitular:'Dina Osma', doctitular:'1234567',
   comprobantePago:''};
 
   //forma de pago GIRO
@@ -408,8 +398,16 @@ $scope.goBack = function (){
     $scope.calcular3_A();
     $scope.calcular2_A();
     $scope.setResumenOrigen();
-    //indica numero del paso inicial a mostrar en la calculadora
-    $scope.paso = 1;
+    
+    //estatus de pago, indica si el usuario ya realizó notificación de pago en origen
+    $scope.pago = 0;
+
+    //valores de variables usados para pruebas
+    //indicar cual es el paso inicial a mostrar en la calculadora
+    //valor por defecto = 1
+    $scope.paso = 3; //1: inicio, 3 es la calculadora, 5: paso final
+    $scope.origen.formapago = 'DEP'; //deposito bancario
+
 
 
 /*TODO. agregar parametro que indica el modo: CALC: solo calculadora, PAGO: registrar pago
@@ -432,8 +430,33 @@ $scope.goBack = function (){
 
   //INICIO CONTROLADOR
   $scope.init_function();
+  
 }]);
 
 //TODO. mejor crear otra vista y ctrl, para manejar la pantalla cuando sea modo PAGO
 //eliminando el uso de la variable modo
 //asi la programacion sera mas sencilla
+
+
+
+//incorpora variable para subir imagenes
+angular.module('myApp.calcPago', ['angularFileUpload'])
+    .controller('AdjuntosCtrl', function($scope, FileUploader) {
+      $scope.uploader = new FileUploader();
+      console.log('mensaje desde AppController con angularFileUpload')
+});
+/*
+*/
+
+
+
+
+/*
+//OPCION NO USADA AHORA
+.config(['$routeProvider', function($routeProvider) {
+  $routeProvider.when('/calcConfirm', {
+    templateUrl: 'calc/confirmar.html',
+    controller: 'ctrlCalcConfirm'
+  });
+}])
+*/

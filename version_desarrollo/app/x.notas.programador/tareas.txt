@@ -1,17 +1,4 @@
 **********************************
-PROBLEMAS
-**********************************
-*arreglar error de acentos en valores tipo texto:
-$conn->set_charset("utf8-unicode-ci"); //handle utf-8 encoding
-or
-$conn->set_charset("utf8"); //handle utf-8 encoding
-
-*arreglar guardar/obtener datos con saltos de linea, para campos tipo textarea: pais/user.observaciones
-
-
-
-
-**********************************
 NECESARIO:
 **********************************
 *transaciones: definir referencia: CONCAT(codpais1,codigopais2,'-',idTransaccion) 
@@ -37,6 +24,22 @@ ej: pais.codigo
 *en las listas de CRUDs, numeras las filas para tener otro identificador aparte del codigo/id respectivo
 *en las listas de CRUDs, mostrar todas de filas
 *en las listas de CRUDs, colocar paginacion de resultados, sobre todo en la lista de transacciones, y en los usuarios
+/*menu principal, colocar opcion CRUD, para todos los listados basicos. llamarlo Configuración
+
+
+**********************************
+PROBLEMAS
+**********************************
+/.*arreglar error de acentos en valores tipo texto:
+$conn->set_charset("utf8-unicode-ci"); //handle utf-8 encoding
+or
+$conn->set_charset("utf8"); //handle utf-8 encoding
+
+%.*arreglar guardar/obtener datos con saltos de linea, para campos tipo textarea: pais/user.observaciones
+
+
+
+
 
 
 
@@ -50,9 +53,9 @@ https://php.net/manual/en/mysqli.quickstart.prepared-statements.php
 **********************************
 MEJORAS DE CODIGO:
 **********************************
-*colocar configuracion conexion de bd en archivo(s) aparte
-*generalizar metodo para agregar registros en una tabla, pasando
-nombre de tabla
+/.colocar configuracion conexion de bd en archivo(s) aparte
+*usar forma de conexion de bd/conecion.php desde todos los querys
+*generalizar metodo para agregar registros en una tabla, pasando nombre de tabla
 *generalizar metodo para borrar registros, pasando solo nombre de tabla, nombre de campo indice, valor de indice
 *que los phps que manipulan los datos devuelvan mensajes de exito o error coherentes
 *mostrar mensajes de error y exito coherentes en la vista
@@ -79,6 +82,8 @@ MEJORAS VISUALES:
 **********************************
 *en listas de users. si no hay resultados, mostrar mensaje sobre eso
 *en listas de transacciones. colocar filtros sobre cada columna correspondiente, desde pais origen en adelante
+*en listas. agregar paginacion
+*en listas. ordenamiento por columnas
 
 **********************************
 MEJORAS USABILIDAD:

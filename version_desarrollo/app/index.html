@@ -37,6 +37,7 @@
   <link rel="stylesheet" href="css/app.css">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/style_lists.css">
+  <!--Css del login con Fb y Google-->
   <link rel="stylesheet" href="css/login.css">
 
 <body>
@@ -45,21 +46,31 @@
 -->
 <ul class="menu">
   <li><a href="#!/inicio">NaguaraBit</a></li>
-  <!--Todo. mejora. agrupar estas opciones en un solo menu-->
+  
+  <li><a href="#!/pruebas">Pruebas</a></li>
+  <li><a href="#!/crud">Configuración</a></li>
+  <!--Todo. mejora. agrupar estas opciones en un solo menu:
   <li><a href="#!/usuarios">Usuarios</a></li>
   <li><a href="#!/paises">Países</a></li>
   <li><a href="#!/ciudades">Ciudades</a></li>
   <li><a href="#!/monedas">Monedas</a></li>
   <li><a href="#!/bancos">Bancos</a></li>
+  -->
   <!--Todo. fin mejora-->
+
   <li><a href="#!/api">Tasas</a></li>
   <li><a href="#!/calc">Calculadora</a></li>
   <li><a href="#!/transacc">Transacciones</a></li>
-  <li><a href="#!/inicio">Comisiones</a></li>
+  <li><a href="#!/login">Acceso</a></li>
+  <!--
+  <li><a href="#!/upload">Upload</a></li>
   <li><a href="#!/login">Registro / Acceso</a></li>
-  <!--li><a href="#!/login">Usuario: XYZ</a></li>
-  <li><a href="#!/inicio">Estadísticas</a></li-->
-  <!--li><a href="#!/pruebas">Pruebas</a></li
+  -->
+  
+  <!--
+  <li><a href="#!/inicio">Comisiones</a></li>
+  <li><a href="#!/login">Usuario: XYZ</a></li>
+  <li><a href="#!/inicio">Estadísticas</a></li>
   <li><a href="#!/pruebas"></a></li>
   -->
     <!--
@@ -98,6 +109,7 @@
 <!--angular lib-->
 <script src="lib/angular/angular.js"></script>
 <script src="lib/angular-route/angular-route.js"></script>
+<script src="lib/angular-file-upload/dist/angular-file-upload.js"></script>
 
 <!--scripts angular -->
 <script src="app.js"></script>
@@ -119,6 +131,14 @@
 <script src="transacc/resumen.js"></script>
 <script src="login/login.js"></script>
 <script src="bancos/bancos.js"></script>
+<script src="upload/upload.js"></script>
+<script src="pruebas/pruebas.js"></script>
+<script src="crud/crud.js"></script>
+<!--
+  <script src="pruebas/modal.js"></script>
+  <script src="pruebas/modal.js"></script>
+
+-->
 
 <!--js propios-->
 <script src="js/fechas.js"></script>

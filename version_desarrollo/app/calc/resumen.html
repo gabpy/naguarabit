@@ -3,33 +3,51 @@
 </p>
 <br/>
 <!--TODO. colocar bandera --flecha-> bandera-destino-->
-<span>De: </span><span style="font-weight: bold">{{data.nombre_pais1}}</span>
+<!--span>De: </span><span style="font-weight: bold">{{data.nombre_pais1}}</span>
 <br/>
 <span>A:  </span><span style="font-weight: bold">{{data.nombre_pais2}}</span>
-<br/><br/>
-<span>Monto a enviar: &nbsp;</span>
-<span style="font-weight: bold">{{(data.monto1 | number : 0.0) + ' ' + data.simbolo_moneda1 }}</span><span> ({{data.nombre_plural_moneda1}})</span>
+<br/><br/-->
+<span>Monto: &nbsp;</span>
+<span class="monto">{{(data.monto1 | number : 0.0) + ' ' + data.simbolo_moneda1 }}</span><span> ({{data.nombre_plural_moneda1}})</span>
 <br/>
-<span>Monto a recibir: &nbsp;</span>
-<span style="font-weight: bold">{{(data.monto2 | number : 0.0) + ' ' + data.simbolo_moneda2}}</span><span> ({{data.nombre_plural_moneda2}})</span>
+<!--span>Monto a recibir: &nbsp;</span>
+<span class="monto">{{(data.monto2 | number : 0.0) + ' ' + data.simbolo_moneda2}}</span><span> ({{data.nombre_plural_moneda2}})</span>
 <br>
+<br-->
 
 <hr>
-<h4>Pago en destino</h4>
-<span>Banco: {{destino.codbank}}</span><br>
-<span>Nombre Titular: {{destino.nombretitular}}</span><br>
-<span>Documento: {{destino.doctitular}}</span><br>
+
+<!--h4>Pago en Origen</h4-->
+
+<div ng-show="origen.formapago == 'DEP'">
+	<h5>Depósito Bancario</h5>
+<span>Banco: {{origen.nombrebank}}</span><br>
+<span>Cuenta Nro: {{origen.nrocta}}</span><br>
+<span>Nombre Titular: {{origen.nombretitular}}</span><br>
+<span>Documento: {{origen.doctitular}}</span><br>
+</div>
+
+<!--TODO. mostrar formas de pago con giro, para otros paises diferentes a Vzla-->
+<div ng-show="origen.formapago == 'GTIGO'">Giro Tigo <br></div>
+
+<!--hr>
+<h4>Realizar Pago</h4>
 <span>Email: {{destino.email}}</span><br>
-<!--TODO. buscar nombre de banco con el codigo-->
 <span>Tipo de cuenta: {{destino.tipocta}}</span><br>
-<span>Nro de cuenta: {{destino.nrocta}}</span><br>
 <span>Observaciones: <br></span>
 <span ng-if="destino.observ != '' ">
 {{ destino.observ}}</span><br>
+<br-->
+
 <br>
+<!--a href="#" ng-if="pago == 0" ng-click="pago = 1">Realizar pago</a-->
 
-<a href="#">Adjuntar pago</a>
+<button class="button-centrado" ng-click="pago = 1" ng-show="pago == 0">Confirmar Pago</button>
 
+
+<div ng-if="pago != 0">
+	<div ng-include="'calc/pago.html'"></div>    
+</div>
 
 <!--TODO. agregar boton cancelar transaccion-->
 
@@ -45,3 +63,8 @@ Al confirmar, el sistema le notificara por correos a los involucrados en el proc
 -->
 
 <!--TODO. mostrar saludo acorde-->
+
+<div id="debug" ng-show="false">
+	$scope.pago : {{pago}}
+
+</div>

@@ -202,3 +202,8 @@ div.resumen{
 .cursor-default{
     cursor: context-menu;
 }
+
+.monto{
+  font-weight: bold;
+  color: green;
+}

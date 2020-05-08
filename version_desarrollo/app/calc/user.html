@@ -12,29 +12,26 @@
 <div name="divForm">
   <form><!-- novalidate -->
     <!--
-    <h3>Datos de usuario</h3>
+    <h3>Datos de usuario</h3> 
   -->
 
-    <input name="login" type="text" ng-model="user.login" maxlength="30" value="gperez"
-    class="form-control input-sm" placeholder="Login de usuario" auto-focus>
+    <input name="nombre" type="text" ng-model="user.nombre" placeholder="Nombre *" auto-focus maxlength="35"
+    class="form-control input-sm" required>
 
     <br/>
-    <input name="nombre" type="text" ng-model="user.nombre" placeholder="Nombre" auto-focus maxlength="35"
-    class="form-control input-sm" >
+    <input name="apellido" type="text" ng-model="user.apellido" placeholder="Apellido *"
+    maxlength="35"
+    class="form-control input-sm" required>
+
 
     <br/>
-    <input name="apellido" type="text" ng-model="user.apellido" placeholder="Apellido"
+    <input name="telefono" type="text" ng-model="user.telefono" maxlength="15" placeholder="Teléfono *"
+    class="form-control input-sm" required>
+
+    <br/>
+    <input name="email" type="text" ng-model="user.email" placeholder="Correo electrónico *"
     maxlength="35"
     class="form-control input-sm" >
-
-    <br/>
-    <input name="email" type="text" ng-model="user.email" placeholder="Correo electrónico"
-    maxlength="35"
-    class="form-control input-sm" >
-
-    <br/>
-    <input name="telefono" type="text" ng-model="user.telefono" maxlength="15" placeholder="Teléfono"
-    class="form-control input-sm">
 
 <!--País residencia-->
   <br/>
@@ -55,12 +52,16 @@
   class="form-control input-sm">
   </textarea>
 
-  </form>
+    <!--input name="login" type="text" ng-model="user.login" maxlength="30" value="gperez"
+    class="form-control input-sm" placeholder="Login de usuario" auto-focus-->
 
-  <div style="visibility: hidden;">
-    <input name="id" type="hidden" ng-model="user.id">
-    <span name="user_id" >user id:{{user.id}}</span>
-  </div>
+
+    <div style="visibility: hidden;">
+      <input name="id" type="hidden" ng-model="user.id">
+      <span name="user_id" >user id:{{user.id}}</span>
+    </div>
+
+  </form>
 
 </div>
 

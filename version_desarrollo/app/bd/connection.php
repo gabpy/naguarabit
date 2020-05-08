@@ -1,4 +1,3 @@
-//bd/connection.php
 <?php
 //get connection
 $conn = new mysqli("localhost", "venebit", "venebit", "venebit");
@@ -10,5 +9,5 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-print("Connection database status: OK");
+//print("Connection database status: OK");
 ?>

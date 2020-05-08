@@ -17,7 +17,8 @@
 
 
         <span ng-show="paso==2"><h4>Paso 2</h4><br>  
-          Elige la forma de pago. Toma nota de estos datos para realizar tu pago a la plataforma.
+          Elige la forma de pago para indicarte los datos correspondientes.
+          <!--Toma nota de estos datos para realizar tu pago a la plataforma.-->
           <!--Luego de realizar el pago, nos indicaras un comprobante (sea foto o imagen escaneada), para verificación y posterior envío de los fondos a la cuenta especificada en 
           -->
           <!--span>{{data.nombre_pais1}}</span-->
@@ -25,13 +26,18 @@
 
         <span ng-show="paso==3"><h4>Paso 3</h4>
           <br>
-        Por favor, revise todos los detalles.<br><br>
-        Al PROCEDER se origina una solicitud de operación, para confirmar su pago.<br><br>
-        La tasa de la remesa se mantiene por 90 minutos para que realice el pago.
+          Por favor realice el pago y adjunte los comprobantes de pago, en formato de imagen.
+        <br><br>
+        La tasa de cambio se mantiene por 90 minutos.<br><br>
+        Luego de ese tiempo se ajusta de forma automática la tasa de cambio para su transacción.<br><br>
+
+        Le quedan X minutos.
+        <!--Al PROCEDER se origina una solicitud de operación, para confirmar su pago.<br><br>-->
         </span>
 
         <span ng-show="paso==4"><h4>Paso 4</h4>
-          <br>Indique los datos de la cuenta bancaria a la que haremos la transferencia.
+          <br>Indique los datos de la cuenta bancaria a la que se hará la transferencia.<br><br>
+        Al finalizar la transacción se le enviará un comprobante por correo. Igualmente puede descargarlo.
           <!--TODO. agregar esta mejora. para posteriores versiones
           <br>
           Si quiere transferir a mas de una cuenta, presione el boton <b>Agregar Otra Cuenta</b>, luego de grabar la primera cuenta.-->
@@ -41,23 +47,28 @@
           Indique datos de usuario para el registro. <br><br>
           Son usados para comunicarnos con usted, de manera oportuna. <br>
           No serán compartidos, respetamos su privacidad.<br><br>
-          <i>Si no desea registrarse: <!--br> saltar este paso.--></i>
+          <i>Si no desea registrarse, puede ignorar este paso. <!--br> saltar este paso.--></i>
           <!--TODO. usar link en vez de botón-->
-          <span class="button-centrado" ng-click="goNext()" ng-show="paso == 5" 
-  title="Saltar este paso">Saltar este Paso</span>
+          <!--span class="button-centrado" ng-click="goNext()" ng-show="paso == 5" 
+  title="Saltar este paso">Saltar este Paso</span-->
 
       <br><br>
-          <i>Ya tienes usuario: .<!--br> saltar este paso.--></i>
+          <i>Si ya tienes usuario: .<!--br> saltar este paso.--></i>
           <!--TODO. usar link en vez de botón-->
-          <span class="button-centrado" ng-click="goNext()" ng-show="paso == 5" 
-  title="Acceder a la plataforma">Acceder</span>
+          <button class="button-centrado" ng-click="#/login" ng-show="paso == 5" 
+  title="Acceder a la plataforma">Acceder</button>
 
         </span>
 
 <!--
+Para el paso donde va a indicar los datos de envio:
+Por favor, revise todos los detalles.
+
 <span>
   <br><br>
         Este valor es para pruebas:
   <input value="1234567890" size="10" style="width: 100px" disabled>
 </span>
 -->
+
+

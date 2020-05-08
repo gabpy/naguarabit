@@ -33,6 +33,12 @@ angular.module('myApp.bancos', ['ngRoute'])
    .then(function (response) {
       $scope.resultados = response.data.records;
     });
+ 
+  //devuelve lista de paises en formato json
+   $http.get("./paises/list.php")
+   .then(function (response) {
+      $scope.lista_paises = response.data.records;
+    });
 
   console.log('controlador -monedas- fin');
 }]

@@ -1,29 +1,53 @@
-<div>
+<div class="container">
+
+<!--opcion 1 de busquedas-->
+<p><h4>Bancos</h4>
+  <input type="text" ng-model="busq1" placeholder=" Buscar..." auto-focus>
+</p>
+<!--TODO. insertar select para filtrar por -->
+
+<!--opcion 3, combinar 2 filtros-->
 <!--
-  <p>Saludos: {{ saludo}}</p>
--->
-<!--TODO.DESEO.    //enfocar campo de busqueda
-<p>Buscar:<input type="text" ng-model="busq1"
-  auto-focus="{{ focusInput }}" value="auto-focus on"></p>
+<p><h4>Bancos</h4>
+<ul class="menu">
+  <li><input type="text" ng-model="busq1" auto-focus></li>
+  <li>
+    <div class="form-row">
+    <select name="cod_pais_filtro" ng-model="bancos.cod_pais_filtro" class="form-control input-sm" ng-init="VEN">
+      <option value="">- Filtrar por País -</option>
+      <option ng-repeat="a in lista_paises" value="{{a.codigo}}">{{a.nombre}}</option>
+    </select></div>
+  </li>
+</ul>
+</p>
 -->
 
-<p><b>Bancos</b> | Buscar:
-  <input type="text" ng-model="busq1" auto-focus>
-</p>
+
+
+<!--opcion 2 de busquedas:
+<p><b>Bancos</b>
+  <div class="form-row">
+    <input type="text" ng-model="busq1" auto-focus placeholder="Buscar por nombre">
+    <select name="cod_pais_filtro" ng-model="bancos.cod_pais_filtro" class="form-control input-sm" ng-value="VEN">
+      <option value="">- País -</option>
+      <option ng-repeat="a in lista_paises" value="{{a.codigo}}">{{a.nombre}}</option>
+    </select>
+  </div>
+</p-->
 
 <table width="100%" class="table table-sm table-hover">
 	<tr>
    <th>Código</th>
    <th>Nombre</th>
-   <th>Símbolo</th>
-   <th>Nombre Plural</th>
+   <th>Nombre Largo</th>
+   <th>País</th>
  </tr>
  <tr ng-repeat="x in resultados | filter:busq1">
-  <td><a title="Ver + detalles" href="#!/moneda/{{ x.codigo }}">{{ x.codigo }}</a></td>
-  <td><a title="Ver + detalles" href="#!/moneda/{{ x.codigo }}">{{ x.nombre }}</a></td>
-  <td>{{ x.simbolo }}</td>
-  <td>{{ x.nombre_plural }}</td>
-<!--TODO. posible. colocar  campo observaciones-->
+  <td><a title="Ver + detalles" href="#!/banco/{{ x.codigo }}">{{ x.codigo }}</a></td>
+  <td><a title="Ver + detalles" href="#!/banco/{{ x.nombre }}">{{ x.nombre }}</a></td>
+  <td>{{ x.nombre_largo }}</td>
+  <td>{{ x.nombre_pais }}</td>
+  <!--TODO. posible. colocar  campo observaciones-->
 </table>
 
 <div>

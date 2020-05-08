@@ -6,7 +6,6 @@ angular.module('myApp', [
   ,'myApp.version'
   ,'myApp.view1'
   ,'myApp.view2'
-  ,'myApp.pruebas'
   ,'myApp.saludo'
   ,'myApp.usuarios'
   ,'myApp.user'
@@ -21,6 +20,12 @@ angular.module('myApp', [
   ,'myApp.transacc',
   ,'myApp.transaccResumen'
   ,'myApp.login'
+  ,'myApp.bancos'
+  ,'myApp.calcPago'
+  ,'myApp.ArchivosAdjuntos'
+  ,'myApp.pruebas'
+  ,'myApp.crud'
+  //,'ui.bootstrap.demo'
 ])
 .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $locationProvider.hashPrefix('!');

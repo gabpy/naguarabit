@@ -47,7 +47,9 @@ if(data.cod_moneda1 != 'Gs')
   class="form-control input-sm"
   style="width: 150px"
   ng-pattern="/^[0-9]+?$/">
-  <span name="monto1_show">{{data.monto1 | number: 0.0}}</span>
+  
+  <span name="monto1_show" class="monto">{{data.monto1 | number: 0.0}}</span>
+  
   <span>{{data.simbolo_moneda1}} ({{data.nombre_plural_moneda1}})</span>
   <!--span>{{data.simbolo_moneda1}} ({{data.cod_moneda1}})</span-->
 </div>
@@ -101,19 +103,22 @@ ng-value="{{data.monto2 | number: 0.0}}"
 -->
 <!--TODO. mostrar mensajes de error para montos min y max-->
 <br>
-<input type="number" name="monto2" ng-model="data.monto2" ng-change="calcular1_A();calcular3_B()"
-step="100" ng-pattern="/^[0-9]+?$/"
-required
-class="form-control input-sm" style="width: 150px">
-<span name="monto2_show">{{data.monto2 | number: 0}}</span>
-<span> {{data.simbolo_moneda2}} ({{data.nombre_plural_moneda2}})</span>
-<!--validacion-->
-<div role="alert">
-  <span class="error" ng-if="form1.monto2.$error.required">Valor requerido</span>
-  <!--span class="error" ng-if="!form1.monto2.$valid">Valor no permitido</span-->
-</div>
+<div>
+  <input type="number" name="monto2" ng-model="data.monto2" ng-change="calcular1_A();calcular3_B()"
+  step="100" ng-pattern="/^[0-9]+?$/"
+  required
+  class="form-control input-sm" style="width: 150px">
 
-<!--span> {{data.simbolo_moneda2}} ({{data.cod_moneda2}})</span-->
+  <span name="monto2_show" class="monto">{{data.monto2 | number: 0}}</span>
+  <span> {{data.simbolo_moneda2}} ({{data.nombre_plural_moneda2}})</span>
+
+  <!--validacion-->
+  <div role="alert">
+    <span class="error" ng-if="form1.monto2.$error.required">Valor requerido</span>
+    <!--span class="error" ng-if="!form1.monto2.$valid">Valor no permitido</span-->
+  </div>
+
+  <!--span> {{data.simbolo_moneda2}} ({{data.cod_moneda2}})</span-->
 <!--TODO. activar edicion al hacer doble click en el campo, o al click en Editar,
 y a su vez cambiar el monto1 a disabled=true
 <a href="" title="Al hacer click activara el campo para modificar valor">Editar</a>
@@ -121,6 +126,7 @@ ng-pattern="/^[0-9]{1,3}(\.[0-9][0-9])?$/" >> patron de 3 numeros enteros con 2 
 string-to-number
 step="0.01" min="10" max="200" ng-min="10" ng-max="200" maxlength="6"
 -->
+</div>
 
 <br><br>
 <!--h5>Equivalente en dólares</h5-->

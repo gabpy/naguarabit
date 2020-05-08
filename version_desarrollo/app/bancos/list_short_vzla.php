@@ -13,6 +13,8 @@ header("Content-Type: application/json; charset=UTF-8");
 $conn = new mysqli("localhost", "venebit", "venebit", "venebit");
 $conn->set_charset("utf8"); //handle utf-8 encoding
 
+//TODO. generalizar a todos los paises
+//PRUEBA, solo bancos de Vzla
 $sql ="SELECT codigo, nombre FROM banks_pais WHERE activo=1 AND codpais='VEN' ORDER BY nombre";
 $result = $conn->query($sql);
 
