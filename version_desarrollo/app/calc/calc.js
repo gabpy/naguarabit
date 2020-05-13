@@ -405,7 +405,7 @@ $scope.goBack = function (){
     //valores de variables usados para pruebas
     //indicar cual es el paso inicial a mostrar en la calculadora
     //valor por defecto = 1
-    $scope.paso = 3; //1: inicio, 3 es la calculadora, 5: paso final
+    $scope.paso = 1; //1: inicio, 3 es la calculadora, 5: paso final
     $scope.origen.formapago = 'DEP'; //deposito bancario
 
 
