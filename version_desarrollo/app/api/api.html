@@ -6,7 +6,8 @@
     <div class="col-sm-6" style="align-content: left">
 
 			<div class="form-group" ng-class="{'has-error': myForm.myDecimal.$invalid}">
-				<h3>Referencia Tasas de Cambio</h3>
+				<h3>Referencia Tasas de Cambio
+					<!--br>BTC/USD/Bs/Gs.--></h3>
 
 				<div name="divMensajeCarga" ng-show="!dataOk" class="exito-element animate-show-hide">
 					<p>Cargando información...</p>
@@ -14,16 +15,43 @@
 
 			<div name="formAPI1" ng-show="dataOk">
 				<form>
-			<span style="color: blue">Bitcoin/Bs.    </span><span style="font-weight: bold; align-text:right">{{BTC_VES_sell | number:0.0}}</span>
+			<span style="color: green">Bitcoin/$USD - </span><span style="font-weight: bold">{{ BTC_USD_price | number:0.0}}</span><span> Dólares por bitcon</span>
+			
+			<br/><br>
+			<span style="color: blue">Bitcoin/VES - </span><span style="font-weight: bold; align-text:right">{{BTC_VES_sell | number:0.0}}</span><span> Bs por bitcoin</span>
+			
 			<br/><br/>
-			<span style="color: green">Bitcoin/$USD  </span><span style="font-weight: bold">{{ BTC_USD_price | number:0.0}}</span>
-			<br/><br/>
-			<span style="color: red">$USD/Bs.       </span><span style="font-weight: bold">{{ USD_VES_rate | number:0.0}}</span>
-			<br/><br/>
-			<span style="color: red">$USD/PYG       </span><span style="font-weight: bold">{{ USD_PYG | number:0.0}}</span>
+			<span style="color: red">$USD/VES - </span><span style="font-weight: bold">{{ USD_VES_rate | number:0.0}}</span><span> Bs por dólar</span>
+			
+			<br><br>
+			<a href="https://api.yadio.io/json/" target="_BLANK">Confirmar Info (BTC/USD/Bs)</a>
 			<br>
+
+			<hr>
+			<!--Guarani (Paraguay)-->
+			<span style="color: red">$USD/PYG - </span><span style="font-weight: bold">{{ USD_PYG | number:2.2}}</span>
+			<span>Guaraníes por dólar</span>
+
+			<br/><br/>
+			<span style="color: red">$PYG/VES - </span><span style="font-weight: bold">{{ 0 | number:0.0}}</span>
+			<span>(Bs por Guaraní)</span>
+
+			<br/><br/>
+			<a href="https://api.yadio.io/rate/PEN" target="_BLANK">Confirmar Info (Perú)</a>
 			<br>
-			<a href="https://api.yadio.io/json/" target="_BLANK">Confirmar Info</a>
+
+			<hr>
+			<!--Sol Peruano (Perú)-->
+			<br/>
+			<span style="color: red">$USD/PEN - </span><span style="font-weight: bold">{{ USD_PEN | number:2.2}}</span>
+			<span>(Soles Peruanos por dólar)</span>
+
+			<br/><br/>
+			<span style="color: red">$PEN/VES - </span><span style="font-weight: bold">{{ PEN_VES | number:0.0}}</span>
+			<span>(Bs por sol Peruano)</span>
+			
+			<br/><br/>
+			<a href="https://api.yadio.io/rate/PYG" target="_BLANK">Confirmar Info (Paraguay)</a>
 			</form>
 			<br/>
 
@@ -32,9 +60,12 @@
 			<br>
 			<div name="formAPI1" ng-show="dataOk">
 				<form>
-			<span style="color: orange">Bitcoin/PYG = </span><span style="font-weight: bold">{{ BTC_PYG_high | number:0.2}}</span>
+			<div name="formAPI1" ng-show="dataOk">
+				<h5>Comprar btc en Paraguay</h5>
+				<span>La mejor tasa para compra en localbitcoins:
+			<span style="color: orange">BTC/PYG = </span><span style="font-weight: bold">{{ BTC_PYG_high | number:0.2}}</span>
 			<br/><hr/>
-			<span style="color: orange">% dif respecto costo BTC con trader</span>
+			<span style="color: orange">% dif respecto costo con trader</span>
 			<input type="number" ng-model="data2.porctrader" step="0.01" size="6" min="0.01" max="20.00" maxlength="6"
 			ng-change="calcValorAjustado()"
 			 style="max-width:150px">
@@ -42,7 +73,7 @@
 			<!--valor ajustado significa paridad BTC/PYG comparado con localbitcoins compra
 			por ahora se tiene que registrar manualmente
 			-->
-			<span style="color: orange">Bitcoin/PYG ajustado <br>(comparar <b>compra</b> en localbitoins) </span><br>
+			<span style="color: orange">Bitcoin/PYG ajustado con porcentaje <br>(comparar <b>compra</b> en localbitoins) </span><br>
 			<span style="font-weight: bold">{{ BTC_PYG_ajustado | number:0.2}}</span>
 
 			<br><br>
@@ -50,8 +81,9 @@
 	
 			</form>
 			</div>
-			</div>
 
+<br><br>
+<div class="container">
 <h4>Herramientas</h4>
 			<ul>
 				<li><a href="https://yadio.io/calc.html" target="_BLANK">Calculadora Yadio</a></li>
@@ -67,14 +99,12 @@
 			</ul>			
 		</div>
 
+<br>
 <!--2da columna, izquierda-->
-		<div class="col-sm-4">
+		<div class="col-sm-6">
       <!--
 			<div style="margin:0 auto; float:right">
       -->
-			
-
-
 			<h4>Calculadora</h4>
 			<h4>(con Tasas Reales)</h4>
 

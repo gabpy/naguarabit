@@ -7,8 +7,7 @@ using customers.php from example in https://www.w3schools.com/angular/angular_sq
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
-$conn = new mysqli("localhost", "venebit", "venebit", "venebit");
-$conn->set_charset("utf8");//handle utf-8 encoding
+include("../bd/connection.php");
 
 $sql ="SELECT * FROM pais WHERE activo order by nombre";
 $result = $conn->query($sql);

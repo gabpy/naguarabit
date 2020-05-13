@@ -25,6 +25,8 @@ angular.module('myApp', [
   ,'myApp.ArchivosAdjuntos'
   ,'myApp.pruebas'
   ,'myApp.crud'
+  ,'myApp.tasapais'
+  ,'myApp.modal'
   //,'ui.bootstrap.demo'
 ])
 .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {

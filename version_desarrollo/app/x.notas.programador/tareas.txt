@@ -1,12 +1,13 @@
 **********************************
 NECESARIO:
 **********************************
-*transaciones: definir referencia: CONCAT(codpais1,codigopais2,'-',idTransaccion) 
+/.colocar configuracion conexion de bd en archivo(s) aparte. solo cambiar el acceso a bd en una linea de todo el codigo.
 
-*colocar titulo de las listas, antes de la busquedsa
-*colocar links relacionados, entre listas de monedas, ciudades, paises 
-*cambiar link Agregar, por boton
-*user. poblar lista paises y ciudades con select
+*transaciones: definir referencia de transaccion: CONCAT(codpais1,codigopais2,'-',idTransaccion) 
+
+%.*colocar links relacionados, entre listas de monedas, ciudades, paises 
+/.*cambiar link de Agregar, por boton. en los CRUDs
+/*user. poblar lista paises y ciudades con select
 *en cada label de campo obligatorio, indicar con * (o con estilo de color de letra)
 *estandarizar crud actuales: pais, user
 *validar campos obligatorios
@@ -25,7 +26,7 @@ ej: pais.codigo
 *en las listas de CRUDs, mostrar todas de filas
 *en las listas de CRUDs, colocar paginacion de resultados, sobre todo en la lista de transacciones, y en los usuarios
 /*menu principal, colocar opcion CRUD, para todos los listados basicos. llamarlo Configuración
-
+*opcion de tasas por pais, equivalencia a USD, Bs y BTC
 
 **********************************
 PROBLEMAS
@@ -50,11 +51,14 @@ MEJORAS DE CODIGO, POR SEGURIDAD:
 usar Prepared Statements para todos los querys, quitar uso de valor que viene de parametros POST o GET
 https://php.net/manual/en/mysqli.quickstart.prepared-statements.php
 
+
+
+
+
 **********************************
 MEJORAS DE CODIGO:
 **********************************
 /.colocar configuracion conexion de bd en archivo(s) aparte
-*usar forma de conexion de bd/conecion.php desde todos los querys
 *generalizar metodo para agregar registros en una tabla, pasando nombre de tabla
 *generalizar metodo para borrar registros, pasando solo nombre de tabla, nombre de campo indice, valor de indice
 *que los phps que manipulan los datos devuelvan mensajes de exito o error coherentes
@@ -77,6 +81,10 @@ variable que almacena los datos se puede llamar simplemente: data
 *para el retorno de los querys en php, hacerlos genericos, indicandole nombre de tabla y campos.
 y llamando a una funcion generica que devuelva los campos
 
+
+
+
+
 **********************************
 MEJORAS VISUALES:
 **********************************
@@ -85,6 +93,10 @@ MEJORAS VISUALES:
 *en listas. agregar paginacion
 *en listas. ordenamiento por columnas
 
+
+
+
+
 **********************************
 MEJORAS USABILIDAD:
 **********************************
@@ -92,7 +104,7 @@ MEJORAS USABILIDAD:
 con una ventana modal donde se definan
 *modulos de configuracion de la app, para no cambiar la programacion para diferentes usuarios o roles.
 ejemplo: campos en las listas, que filtros mostrar/ocultar. o que haya ventanas de configuracion en modulos que asi lo requieran.
-
+*calculadora, al enfocar un input resaltar el monto, para que sea mas facil borrar todo.
 
 **********************************
 DOCUMENTAR
@@ -100,4 +112,6 @@ DOCUMENTAR
 *codigo fuente, cada archivo
 *procesos (Dina). con diagramas
 
-x
+REALIZADO
+**********************************
+/*colocar titulo de las listas, antes de la busqueda

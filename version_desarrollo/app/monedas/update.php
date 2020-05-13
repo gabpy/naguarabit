@@ -10,13 +10,7 @@ en el parametro $_POST['user'] hay que pasarle un arreglo asociativo con los dat
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
-// Create connection
-$conn = new mysqli("localhost", "venebit", "venebit", "venebit");
-$conn->set_charset("utf8"); //handle utf-8 encoding
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include("../bd/connection.php");
 
 //get objeto json de parametros proporcionados de llamada tipo RestFul, desde ctrl angular
 $params =  json_decode(file_get_contents('php://input'), true);

@@ -7,9 +7,7 @@ obtiene lista de todas las transacciones registradas
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
-$conn = new mysqli("localhost", "venebit", "venebit", "venebit");
-//handle utf-8 encoding
-$conn->set_charset("utf8");
+include("../bd/connection.php");
 
 //TODO. agregar condiciones iniciales, pq cuando ya la lista sea larga tardara en mostrar...
 $where = ""; //condiciones...

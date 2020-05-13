@@ -8,7 +8,7 @@ delete_user.php?login=LOGINUSER
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
-$conn = new mysqli("localhost", "venebit", "venebit", "venebit");
+include("../bd/connection.php");
 
 if (isset($_GET['login'])){
   $login = $_GET['login'];

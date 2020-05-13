@@ -9,10 +9,7 @@ header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
 //+include '../util.php';
-
-$conn = new mysqli("localhost", "venebit", "venebit", "venebit");
-
-$conn->set_charset("utf8"); //handle utf-8 encoding
+include("../bd/connection.php");
 
 if (isset($_GET['codigo'])){
   $codigo = $_GET['codigo'];

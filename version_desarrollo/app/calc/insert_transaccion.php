@@ -3,14 +3,7 @@
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
-// Create connection
-$conn = new mysqli("localhost", "venebit", "venebit", "venebit");
-$conn->set_charset("utf8"); //handle utf-8 encoding
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include("../bd/connection.php");
 
 //get objeto json con los parametros proporcionados a través de llamada tipo RestFul, desde el controlador
 $dataParams =  json_decode(file_get_contents('php://input'), true);

@@ -36,6 +36,37 @@ angular.module('myApp.api', ['ngRoute'])
     console.log('CtrlAPI.getDataYadio.inicio');
 };//getDataYadio
 
+//TODO. generalizarlo para cualquier moneda
+//obtiene info de API Yadio para moneda SOL PERUANO (PEN) y la guarda en la variable data
+  $scope.getDataYadioMoneda = function() {
+    console.log('CtrlAPI.getDataYadioMoneda.inicio. moneda: PEN');
+
+    var URLconsulta = "./api/api_yadio_get_moneda.php";
+    //debugger;
+    $http.get(URLconsulta)
+    .then(function(response) {
+      //debugger;
+      if (response.data.records != null){
+        $scope.data3 = response.data.records;
+        console.log('CtrlAPI.getDataYadioMoneda.inicio. moneda: PEN. respuesta api:');
+        console.log(response.data)
+        //valores particulares, tasas especificas
+        $scope.PEN_VES = $scope.data3[0]['rate'];//bs por sol peruano, tasa promedio
+        $scope.USD_PEN = $scope.data3[0]['usd']; //soles peruano por dolar, tasa promedio
+
+        $scope.dataOk = $scope.dataOk && true;
+      }
+      else{
+        $scope.msg = "Data  no encontrada. URL de busqueda: " + URLconsulta;
+      }
+    },
+    function(data, status) {
+      //debugger;
+      console.error('Error en SERVICIO de consulta de datos: ', status, data);
+    });   //TODO: gestionar error, cuando no se traigan los datos del usuario, mostrar mensaje en vista
+    console.log('CtrlAPI.getDataYadio.inicio');
+};//getDataYadio
+
 //trae la info de API bitcoinaverage y la guarda en la variable data2
  $scope.getData_bitcoinaverage = function() {
     console.log('CtrlAPI.getData_bitcoinaverage.inicio');
@@ -149,6 +180,7 @@ $scope.USD_VES_rate = 0.00;
 $scope.BTC_PYG_ajustado = 0.00;
 $scope.getDataYadio();
 $scope.getData_bitcoinaverage();
+$scope.getDataYadioMoneda();
 
 //simulador calculadora
 //valores iniciales

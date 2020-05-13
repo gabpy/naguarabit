@@ -44,9 +44,7 @@ if (!isset($filtros) || $filtros == ""){
 
 //realizar la busqueda
 
-$conn = new mysqli("localhost", "venebit", "venebit", "venebit");
-//handle utf-8 encoding
-$conn->set_charset("utf8");
+include("../bd/connection.php");
 
 //TODO. armar la condicion del where
 $where="";
