@@ -63,14 +63,14 @@
 
   <button class="button-centrado" ng-click="goNext()" ng-show="paso == 3 && $ctrl.pagos=='ok' ">Continuar</button>
 
-  <button class="button-centrado" ng-click="goNext()" ng-show="paso == 5">Saltar</button>
+  <button class="button-centrado" title="Confirmar transacción *en desarrollo*" ng-show="paso == 5">Ignorar</button><!--ng-click="goNext()"-->
   <!--button class="button-centrado" ng-click="goNext()" ng-show="paso == 4" 
   title="Saltar este paso">Saltar Paso</button-->
   <!--button class="button-centrado" ng-click="confirm()" ng-show="paso == 5 || paso == 2" 
   title="Confirmar transacción">Proceder</button-->
   
-  <button class="button-centrado" ng-click="goNext()" ng-show="paso == 5" 
-  title="Confirmar transacción">Proceder</button>
+  <button class="button-centrado" ng-show="paso == 5"
+  title="Confirmar transacción *en desarrollo*">Registrar</button> <!--ng-click="goNext()" -->
 </div>
 </div>
 
