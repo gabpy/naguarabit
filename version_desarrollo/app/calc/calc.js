@@ -99,18 +99,16 @@ function() {
   };
 
 
-//carga lista de bancos para llenar el combo/select
+//carga lista de bancos para pais destino
 $scope.cargarBancosDestino = function () {
   console.log('controlador -calc- cargarBancosDestino. inicio');
-
-  var paisDestino = '';
-  if ($scope.data.cod_pais2 == 'VEN')
-    paisDestino = 'VEN';
-  //else
-    //TODO. pendiente. considerar otros paises
-
-  //TODO. pendiente, pasar parametro de pais
-  $http.get("./bancos/list_short_vzla.php")
+  var codpaisDestino = $scope.data.cod_pais2;
+  /*en proceso. considerar cualquier pais
+  $http.get("./bancos/list_short.php?codpais=" + codpaisDestino)
+  */
+  
+  //solo venezuela
+  $http.get("./bancos/list_short_vzla.php?codigo=" + codpaisDestino)
   .then(function (response) {
     $scope.lista_bancos = response.data.records;
     console.log($scope.lista_bancos);
@@ -118,6 +116,22 @@ $scope.cargarBancosDestino = function () {
   function(data, status) {
     console.error('Error en SERVICIO consulta lista_bancos. ', status, data);
     $scope.msg = "Error consultando datos: SERVICIO de consulta de lista_bancos";
+  });
+  console.log('controlador -calc- cargarBancosDestino. fin');
+}
+
+//carga lista de bancos para pais origen
+$scope.cargarBancosOrigen = function () {
+  console.log('controlador -calc- cargarBancosOrigen. inicio');
+  var codpaisOrigen = $scope.data.cod_pais1;
+  $http.get("./bancos/list_short_origen.php?codpais=" + codpaisOrigen)
+  .then(function (response) {
+    $scope.lista_pagos_origen = response.data.records;
+    console.log($scope.lista_pagos_origen);
+  },
+  function(data, status) {
+    console.error('Error en SERVICIO consulta lista_pagos_origen. ', status, data);
+    $scope.msg = "Error consultando datos: SERVICIO de consulta de lista_pagos_origen";
   });
   console.log('controlador -calc- cargarBancosDestino. fin');
 }
@@ -394,6 +408,7 @@ $scope.goBack = function (){
     $scope.initData();
     $scope.cargarPaises();
     $scope.cargarBancosDestino();
+    $scope.cargarBancosOrigen();
     $scope.setTasasCambio();
     $scope.calcular3_A();
     $scope.calcular2_A();

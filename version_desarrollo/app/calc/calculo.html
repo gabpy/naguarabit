@@ -7,7 +7,7 @@
   <!--TODO. IDEA MEJORA. usar banderas de origen y destino, para quitar esas palabras de titulos, cargar bandera cuando se elige pais en select-->
   <h4>Desde</h4>
   <!--TODO. el pais por defecto sera Paraguay. En siguientes versiones, será el pais del usuario logueado-->
-  <select name="cod_pais1" ng-model="data.cod_pais1" class="form-control input-sm" ng-change="cargarMonedaPais()" disabled>
+  <select name="cod_pais1" ng-model="data.cod_pais1" class="form-control input-sm" ng-change="cargarMonedaPais()" disabled> <!-- colocar disabled para que usuario no pueda cambiar el pais-->
     <option value="">- País Origen -</option>
     <option ng-repeat="a in lista_paises" value="{{a.codigo}}">{{a.nombre}}</option>
   </select>
@@ -84,7 +84,7 @@ ng-pattern="/^[0-9]+?$/"
 <!--TODO. el pais por defecto es Paraguay. Luego sera el pais donde el usuario esta logueado, o el pais definido por defecto por el usuario-->
 <h4>Hacia</h4>
 <select name="cod_pais2" ng-model="data.cod_pais2" class="form-control input-sm"
-ng-change="cargarMonedaPais2()" disabled>
+ng-change="cargarMonedaPais2()" > <!-- colocar disabled para que usuario no pueda cambiar el pais-->
 <option value="">- País Destino -</option>
 <!--option value="VEN">Venezuela</option-->
 <option ng-repeat="a in lista_paises" value="{{a.codigo}}">{{a.nombre}}</option>
