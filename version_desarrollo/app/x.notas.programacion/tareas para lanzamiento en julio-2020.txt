@@ -1,0 +1,20 @@
+**********************************
+PRIORIDAD PARA LANZAR APP BACKEND
+**********************************
+/simulador
+calculadora, que use comision
+cargar comprobante de pago en calculadora
+lista transacciones mostrando todos los datos
+cargar comprobantes en transacciones: usada por operadores
+diseño de contenido de emails (con Dina)
+envio de emails donde corresponda
+
+**********************************
+URGENTE
+**********************************
+
+**********************************
+ACCESORIO
+**********************************
+/colocar favicon
+diseño de emails bonitos (con Yosi)

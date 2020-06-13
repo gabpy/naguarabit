@@ -1,4 +1,21 @@
 **********************************
+URGENTE
+**********************************
+
+
+**********************************
+PRIORIDAD PARA LANZAR APP en julio 2020
+**********************************
+/simulador
+calculadora, que use comision
+cargar comprobante en calculadora
+lista transacciones mostrando todos los datos
+cargar comprobantes en transacciones: usada por operadores
+diseño de emails
+envio de emails donde corresponda
+
+
+**********************************
 NECESARIO:
 **********************************
 /.colocar configuracion conexion de bd en archivo(s) aparte. solo cambiar el acceso a bd en una linea de todo el codigo.
