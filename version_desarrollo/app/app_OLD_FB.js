@@ -16,6 +16,7 @@ angular.module('myApp', [
   ,'myApp.ciudades'
   ,'myApp.ciudad'
   ,'myApp.calc'
+  ,'myApp.api'
   ,'myApp.transacc',
   ,'myApp.transaccResumen'
   ,'myApp.login'
@@ -26,9 +27,6 @@ angular.module('myApp', [
   ,'myApp.crud'
   ,'myApp.tasapais'
   ,'myApp.modal'
-  ,'myApp.mail'
-  ,'myApp.simulador'
-  //,'myApp.api'
   //,'ui.bootstrap.demo'
 ])
 .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
