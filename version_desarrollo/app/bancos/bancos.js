@@ -35,7 +35,7 @@ angular.module('myApp.bancos', ['ngRoute'])
     });
  
   //devuelve lista de paises en formato json
-   $http.get("./paises/list.php")
+   $http.get("./bancos/list.php")
    .then(function (response) {
       $scope.lista_paises = response.data.records;
     });

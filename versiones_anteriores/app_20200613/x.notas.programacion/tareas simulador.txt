@@ -1,0 +1,5 @@
+cambiar nombre carpeta a: simulador
+QUE CALCULE LOS GS EN BASE A USD
+QUE CALCULE LOS BS EN BASE A USD
+
+cambiar variables con nombres genericos: origen, usd, destino

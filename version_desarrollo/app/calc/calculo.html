@@ -5,9 +5,14 @@
     <h3>Calcular remesa</h3>
   -->
   <!--TODO. IDEA MEJORA. usar banderas de origen y destino, para quitar esas palabras de titulos, cargar bandera cuando se elige pais en select-->
-  <h4>Desde</h4>
-  <!--TODO. el pais por defecto sera Paraguay. En siguientes versiones, será el pais del usuario logueado-->
-  <select name="cod_pais1" ng-model="data.cod_pais1" class="form-control input-sm" ng-change="cargarMonedaPais()" disabled> <!-- colocar disabled para que usuario no pueda cambiar el pais-->
+  <h4>Envías desde</h4>
+  <!--TODO. El pais por defecto inicialmente es Paraguay.
+    En siguientes versiones, será el pais de donde el usuario está logueado.
+    Otra opción es que el usuario pueda indicar en su perfil cuál es el país donde reside.
+    O que pueda establecer el par de países por defecto que usará (origen/destino).
+    Pero siempre permitiendo cambiarlo al momento de usar la calculadora.
+  -->
+  <select name="cod_pais1" ng-model="data.cod_pais1" class="form-control input-sm" ng-change="cargarMonedaPais()" disabled>
     <option value="">- País Origen -</option>
     <option ng-repeat="a in lista_paises" value="{{a.codigo}}">{{a.nombre}}</option>
   </select>
@@ -41,12 +46,17 @@ if(data.cod_moneda1 != 'Gs')
 -->
 <div>
   <input name="monto1_edit" type="number"
-  step="50" ng-min="65000" ng-max="5000000" min="65000" max="5000000"
+  
   ng-model="data.monto1" ng-change="calcular2_A(); calcular3_A()"
-  auto-focus required
+  auto-focus required min="5000" max="6500000"
   class="form-control input-sm"
   style="width: 150px"
   ng-pattern="/^[0-9]+?$/">
+  <!--
+    todo. establecer monto min y max segun formula o valor en bd
+    ng-min="65000" ng-max="5000000" min="65000" max="5000000"
+  step="50" 
+  -->
   
   <span name="monto1_show" class="monto">{{data.monto1 | number: 0.0}}</span>
   
@@ -82,9 +92,9 @@ ng-pattern="/^[0-9]+?$/"
 <br>
 
 <!--TODO. el pais por defecto es Paraguay. Luego sera el pais donde el usuario esta logueado, o el pais definido por defecto por el usuario-->
-<h4>Hacia</h4>
+<h4>Recibes</h4>
 <select name="cod_pais2" ng-model="data.cod_pais2" class="form-control input-sm"
-ng-change="cargarMonedaPais2()" > <!-- colocar disabled para que usuario no pueda cambiar el pais-->
+ng-change="cargarMonedaPais2()" disabled>
 <option value="">- País Destino -</option>
 <!--option value="VEN">Venezuela</option-->
 <option ng-repeat="a in lista_paises" value="{{a.codigo}}">{{a.nombre}}</option>
@@ -103,9 +113,11 @@ ng-value="{{data.monto2 | number: 0.0}}"
 -->
 <!--TODO. mostrar mensajes de error para montos min y max-->
 <br>
-<div>
+
+<!--monto en moneda destino-->
+<div title="falta aplicar porc de comision">
   <input type="number" name="monto2" ng-model="data.monto2" ng-change="calcular1_A();calcular3_B()"
-  step="100" ng-pattern="/^[0-9]+?$/"
+  step="10" ng-pattern="/^[0-9]+?$/"
   required
   class="form-control input-sm" style="width: 150px">
 
@@ -129,25 +141,59 @@ step="0.01" min="10" max="200" ng-min="10" ng-max="200" maxlength="6"
 </div>
 
 <br><br>
+<div title="falta aplicar porc de comision">
 <!--h5>Equivalente en dólares</h5-->
 <!--ng-value="{{data.monto3 | number:2}}" -->
 <input name="monto3" type="text" ng-model="data.monto3" ng-change="calcularConBaseUSD()"
-
 class="form-control input-sm"
 style="width: 150px"
 >
-<span>Dólares ($USD)</span>
-<!--validacion-->
+<span>Dólares $USD</span>
+</div>
+<!--TODO. validacion de algun campo en el que se haya escrito, y que sean solo numeros-->
+
+
+
+<br><br>
+<div>
+<span ng-if="!tasa_USD_Bs_final || !tasa_Gs_Bs_final" class="alert-warning"> Cargando tasas...</span>
+
+<span ng-if="tasa_USD_Bs_final">{{ tasa_USD_Bs_final | number: 2.0 }}
+<b>Bs. por dólar</b>
+</span>
+<br>
+
+<span ng-if="tasa_Gs_Bs_final">{{ tasa_Gs_Bs_final | number: 2.0 }}
+<b>Bs. por Guaraní</b>
+</span>
+
+<div>
+
+
+
+
+<!--TODO. validacion-->
 <div role="alert">
   <span class="error" ng-if="form1.monto3.$error.required">Campo requerido</span>
   <!--span class="error" ng-if="!form1.monto3.$valid">Valor no permitido</span-->
 </div>
+
+
+<!--TODO. mejorar codigo, estos div no tienen pareja-->
+
 </div>
 </div>
+
+
 </form>
 
 <div id="debug" ng-show="false">
+  tasa_USD_Bs_final: {{ tasa_USD_Bs_final }}</pre><br>
+  tasa_USD_Bs_final is null: {{ !tasa_USD_Bs_final }}</pre><br>
+</div>
+
+<!--
 data: {{ data | json}}</pre><br>
 monto3 : {{ monto3 }}<br>
 monto3.tipo de dato : {{ typeOf(monto3) }}
-</div>
+  -->

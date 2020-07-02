@@ -8,7 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!--<title>BitTrade-Admin</title>-->
   <!--<title>Angular-Learning - Admin-Venebit</title>-->
-  <title>Naguarabit - Administrador</title>
+  <title>Naguarabit - Control Operadores</title>
 <link rel="icon" 
       type="image/png" 
       href="http://naguarabit.com/img/favicon/favicon.png">
@@ -161,6 +161,7 @@ Configuración
   <li><a href="#!/tasapais">Tasas*</a></li>
 -->
 
+  <li><a href="#!/develop">Desarrollo</a>
 
   <li><a href="#!/crud">Configuración</a></li>
   <!--Todo. mejora. agrupar estas opciones en un solo menu:
@@ -172,7 +173,6 @@ Configuración
   -->
   <!--Todo. fin mejora-->
 
-  <li><a href="#!/pruebas">Pruebas</a></li>
   <li><a href="#!/simulador">Simulador</a></li>
   <li><a href="#!/calc">Calculadora</a></li>
   <li><a href="#!/transacc">Transacciones</a></li>
@@ -235,6 +235,25 @@ Configuración
 <!--aqui se muestra el cuerpo de la pagina, o sea la vista elegida mediante el menu-->
     <div ng-view></div>
 
+ <footer class="footer bg-dark">
+    <!-- footer container-->
+    <div class="container">
+      <div class="text-muted small float-left">
+        <span class="text-muted">Naguarabit</span>
+        <a class="twitter" target="_blank" rel="noopener" href="https://twitter.com/Naguarabit"><i
+            class="fab fa-twitter"></i></a>
+        <!--  <a class="" href="#"><i class="fas fa-envelope"></i></a> -->
+        <a class="twitter" target="_blank" rel="noopener" href="https://www.instagram.com/Naguarabit"><i
+            class="fab fa-instagram"></i></a>
+        <a id="mail" class="twitter" href="mailto:?subject=Contacto+Operadores" target="_blank"><i class="far fa-envelope"></i></a>
+      </div>
+
+      <div class="text-muted small float-right">
+        <i class="far fa-edit"></i> <span id="last_updated"></span>
+        <span id="last_updated">30-Junio-2020 / 17.20 PM (Venezuela)</span>
+      </div>
+    </div>
+  </footer>
     <br><br><br>
     <!--TODO. colocar footprint-->
   <!--
@@ -254,7 +273,7 @@ Configuración
 <script src="view1/view1.js"></script>
 <script src="view2/view2.js"></script>
 <script src="pruebas/pruebas.js"></script>
-<script src="inicio/saludo.js"></script>
+<script src="inicio/inicio.js"></script>
 <script src="mail/mail.js"></script>
 <script src="usuarios/usuarios.js"></script>
 <script src="user/user.js"></script>
@@ -276,6 +295,7 @@ Configuración
 <script src="modal/modal.js"></script>
 <script src="modal/modal.js"></script>
 <script src="simulador/simulador.js"></script>
+<script src="develop/develop.js"></script>
 <!--script src="api/api.js"></script--> <!--antes era api, ahora es simulador-->
 <!--
   <script src="pruebas/modal.js"></script>

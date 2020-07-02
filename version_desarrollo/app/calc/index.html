@@ -1,3 +1,4 @@
+<!--pagina principal de calculadora-->
 <!--usando bootstrap-->
 <div class="container">
   <div class="row">
@@ -47,12 +48,12 @@
 <!--PASO 5 - datos de usuario-->
 <div class="form-group" ng-show="paso==5" ng-class="{'has-error': myForm.myDecimal.$invalid}">
   <form name="form2"><!-- novalidate -->
-    <h3>Datos de usuario</h3>
+    <h3>Registro de usuario</h3>
     <div ng-include="'calc/user.html'"></div>
   </form>
 </div>
 
-<div class="botones-centrados">
+<div class="botones-centrados" style="align-content:center">
   <!--TODO. deshabilitar botón si los montos indicados están fuera de rango válido-->
   <button class="button-centrado" ng-click="goNext()" ng-show="paso == 1"
   ng-disabled="form1.$invalid">Solicitar Remesa</button>
@@ -110,7 +111,13 @@
 </div>
 
 </div>
+<!--span>
+Fecha actualización código: 2020-06-29, Hora: 08:08
+</span-->
+
 </div>
+
+
 
 
 <div>

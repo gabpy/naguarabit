@@ -1,0 +1,46 @@
+Naguarabit - Leeme
+------------------------
+
+Requerimientos
+------------------------
+PHP
+MySQL
+
+
+Probada con servidor WAMP
+
+Base de datos
+--------------------------
+bd: venebit
+user: venebit
+password: venebit
+
+
+Pasos Funcionamiento
+-------------------------------
+1.colocar carpeta en www del servidor
+2. en phpmyadmin subir respaldo de bd mediante el archivo comprimido
+3. en phpmyadmin crear usuario venebit con password venebit
+4. abrir aplicacion en localhost/naguarabit
+
+Historial de Cambios
+-------------------------------
+2020-04-11
+en calculadora: se quito decimales al monto destino, al momento de calcular
+en calculadora: se agrego nombre de monedas en plural, al momento de calcular
+
+Instalar librerias npm
+-------------------------------
+Abrir consola
+Ir a carpeta raiz de la app, ejemplo: wamp/www/naguarabit
+Ejecutar comando de instalacion de la libreria, ejemplo de https://github.com/nervgh/angular-file-upload el comando es:
+$ npm install angular-file-upload
+Las librerias se instalan en la carpeta  naguarabit/app/lib
+
+Comandos npm
+-----
+Revisar librerias instaladas
+$ npm ls
+
+corregir instalacion y dependencias
+$ npm audit fix

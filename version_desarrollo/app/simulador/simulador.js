@@ -58,10 +58,10 @@ angular.module('myApp.simulador', ['ngRoute'])
         //console.log('Ctrlsimulador.getDataYadioMonedaPYG.inicio. moneda: PEN. respuesta api:');
         console.log(response.data)
         //valores particulares, tasas especificas
-        $scope.PYG_VES = $scope.data3[0]['rate'];//bs por guarani, tasa promedio
+        $scope.PYG_VES      = $scope.data3[0]['rate'];     //bs por guarani, tasa promedio
         $scope.USD_PYG_rate = $scope.data3[0]['usd']; //guaranies por dolar, tasa promedio
-        console.log('PYG_VES: '+$scope.PYG_VES);
-        console.log('USD_PYG_rate: '+$scope.USD_PYG_rate);
+        console.log('PYG_VES: ' + $scope.PYG_VES);
+        console.log('USD_PYG_rate: ' + $scope.USD_PYG_rate);
 
         //analizar si es necesario esta linea
         $scope.dataOk = $scope.dataOk && true;
@@ -83,7 +83,7 @@ angular.module('myApp.simulador', ['ngRoute'])
 
 
 
-
+/*
 //NO USADO AUN
 //trae la info de API bitcoinaverage y la guarda en la variable data2
  $scope.getData_bitcoinaverage = function() {
@@ -111,7 +111,7 @@ angular.module('myApp.simulador', ['ngRoute'])
     });   //TODO: gestionar error, cuando no se traigan los datos del usuario, mostrar mensaje en vista
     console.log('Ctrlsimulador.getData_bitcoinaverage.inicio');
 };//getData_bitcoinaverage
-
+*/
 
 //obtener data especifica para mostrar en la vista, del API de Yadio
 $scope.showDataYadio = function() {
@@ -129,20 +129,32 @@ $scope.showDataYadio = function() {
 //valores particulares, tasas especificas
   //valor de BTC en USD
   $scope.BTC_USD_price = $scope.BTC['price'];
-  //precio venta de 1 BTC por Bs
+  
+  //tasa de venta BTC por Bs
   $scope.BTC_VES_sell = $scope.VES['sell']; 
+  
+  //precio compra BTC con Bs
+  $scope.BTC_VES_buy = $scope.VES['buy']; 
+
+  //precio compra BTC con Bs
+  $scope.BTC_VES_avg = $scope.VES['avg']; 
+
   //Tasa de Bs por USD
   $scope.USD_VES_rate = $scope.USD['rate'];
+  
+  //TODO. dejar de usar eso, y usar la tasa que viene de la funcion getYadioMoneda('PYG')
   //Tasa de Guaranies por USD (USD/Gs)
   $scope.USD_PYG = $scope.USD['PYG'];
 
-    /*
+    /**/
   console.log('Consultando data de API Yadio...');
+  console.log('USD/PYG : ' + $scope.USD_PYG);
   console.log('BTC/USD: ' + $scope.BTC_USD_price);
   console.log('USD/Bs : ' + $scope.USD_VES_rate);
-  console.log('BTC/Bs : ' + $scope.BTC_VES_sell);
-  console.log('USD/PYG : ' + $scope.USD_PYG);
-  */
+  console.log('BTC/Bs PRECIO PROMEDIO: ' + $scope.BTC_VES_avg);
+  console.log('BTC/Bs COMPRA: ' + $scope.BTC_VES_buy);
+  console.log('BTC/Bs VENTA: ' + $scope.BTC_VES_sell);
+  /**/
 };
 
 
@@ -211,14 +223,14 @@ $scope.calcularMontoOrigen_1 = function() {
 $scope.calcularMontoDestino_B = function() {
  console.log('simulador. calcularMontoDestino_B. inicio');
  console.log('monto1=' + $scope.monto1);
- console.log('TASA PYG a VES=' + $scope.PYG_VES);
+ console.log('TASA PYG a VES, sin comision=' +   $scope.PYG_VES);
  //validacion
  if (!$scope.monto1 || $scope.monto1 == 0 || $scope.monto1 == "") return false;
 
  var monto2 = 0;
  var monto2 = $scope.monto1 * $scope.PYG_VES;
  //console.log('simulador. calcularMontoDestino_B. monto2 antes de formatear =' + monto2);
- $scope.monto2 = parseFloat(monto2).toFixed(0); //redondeo sin decimales
+ $scope.monto2 = parseFloat(monto2).toFixed(2); //redondeo a 2 decimales
  console.log('simulador. calcularMontoDestino_B. monto2=' + $scope.monto2);
 
  $scope.aplicarComision();
@@ -261,9 +273,9 @@ $scope.aplicarComision = function(){
   
   //var tasa_USD_Destino_final  = $scope.USD_PYG_rate * (1 - $scope.porc_comision/100);
 
-  $scope.monto1_final = monto1_final.toFixed(0); //round a 0 decimales
+  $scope.monto1_final = monto1_final.toFixed(2); //round a 0 decimales
   $scope.montoUSD_final = montoUSD_final.toFixed(2); //round a 2 decimales
-  $scope.montoBs_final = montoBs_final.toFixed(0); //round a 0 decimales
+  $scope.montoBs_final = montoBs_final.toFixed(2); //round a 0 decimales
   console.log('aplicarComision');
   console.log('montoUSD_final: ' + $scope.montoUSD_final);
   console.log('montoBs_final: ' + $scope.montoBs_final);
@@ -275,10 +287,10 @@ $scope.aplicarComision = function(){
 //aplicar porcentaje de comision a las tasas de cambios
 $scope.aplicarComisionTasas = function(){
   var tasa_Gs_Bs_final     = $scope.PYG_VES * (1 - $scope.porc_comision/100);
-  $scope.tasa_Gs_Bs_final  = tasa_Gs_Bs_final.toFixed(1); //round a 0 decimales
+  $scope.tasa_Gs_Bs_final  = tasa_Gs_Bs_final.toFixed(2); //round a 0 decimales
 
   var tasa_USD_Bs_final  = $scope.USD_VES_rate * (1 - $scope.porc_comision/100);
-  $scope.tasa_USD_Bs_final  = tasa_USD_Bs_final.toFixed(1); //round a 0 decimales
+  $scope.tasa_USD_Bs_final  = tasa_USD_Bs_final.toFixed(2); //round a 0 decimales
 
 
   console.log('aplicarComisionTasas:');
@@ -307,11 +319,17 @@ $scope.data2 = {porctrader: 7.5};
 //valor inicial de porcentaje ajuste para comprar btc con Guaranies
 $scope.data2.porctrader = 7;
 
-$scope.BTC_VES_sell = 0.00;
+$scope.BTC_VES_sell  = 0.00;
 $scope.BTC_USD_price = 0.00;
-$scope.USD_VES_rate = 0.00;
+$scope.USD_VES_rate  = 0.00;
+$scope.BTC_VES_buy   = 0.00;
+$scope.BTC_VES_avg   = 0.00;
+$scope.PYG_VES       = 0.00;
 $scope.BTC_PYG_ajustado = 0.00;
 
+
+//TODO. probar bien, para ver si siempre trae el monto de las tasas,
+//sino anidar las llamadas entre ellas:
 $scope.getDataYadioMonedaPYG();
 $scope.getDataYadio();
 

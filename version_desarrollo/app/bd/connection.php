@@ -1,11 +1,14 @@
 <?php
-//get connection, en wampserver
+//datos de conexión bd, en forma local: wampserver
 //host, bd, user, password
-//$conn = new mysqli("localhost", "venebit", "venebit", "venebit");
+$conn = new mysqli("localhost", "venebit", "venebit", "venebit");
+//TODO: cambiar bd nombre a: naguarabit_cc
+//TODO: cambiar user a: naguarabit_admin
+//TODO: cambiar password a algo más difícil: naguarabit.exito
 
-//get connection, en hosting
+//datos de conexión bd en hosting
 //host, user, password, bd
-$conn = new mysqli("localhost", "naguarab_backend", "Naguarabit.exito", "naguarab_backend");
+//$conn = new mysqli("localhost", "naguarab_backend", "Naguarabit.exito", "naguarab_backend");
 
 //handle utf-8 encoding
 $conn->set_charset("utf8");

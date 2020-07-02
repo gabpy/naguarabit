@@ -17,16 +17,27 @@
 				<div name="formAPI1" ng-show="dataOk">
 					<h3 style="color:rgb(29, 161, 242); font-weight:400">Tasas de Referencia</h3><!--br>BTC/USD/Bs/Gs.-->
 					<form>
-						<span style="color: green">Bitcoin/$USD - </span><span style="font-weight: bold">{{ BTC_USD_price | number:0.0}}</span><span> Dólares por bitcon</span>
+						
+						<!--tasa promedio yadio: USD-Bs-->
+						<span style="color: red">$USD/Bs - </span><span style="font-weight: bold">{{ USD_VES_rate | number:2.2}}</span><span> Bs por dólar</span>
 
-						<br/><br>
-						<span style="color: blue">Bitcoin/VES - </span><span style="font-weight: bold; align-text:right">{{BTC_VES_sell | number:0.0}}</span><span> Bs por bitcoin</span>
 
 						<br/><br/>
-						<span style="color: red">$USD/VES - </span><span style="font-weight: bold">{{ USD_VES_rate | number:0.0}}</span><span> Bs por dólar</span>
+						<!--tasa promedio yadio: BTC-USD-->
+						<span style="color: green">BTC/$USD - </span><span style="font-weight: bold">{{ BTC_USD_price | number:0.1}}</span><span> Dólares por bitcon</span>
 
-						<br><br>
-						<a href="https://api.yadio.io/json/" target="_BLANK">Confirmar Info (BTC/USD/Bs)</a>
+
+						<!-- tasa promedio yadio: BTC-Bs -->
+						<br/><br>
+						<span style="color: blue">BTC/Bs Promedio - </span><span style="font-weight: bold; align-text:right">{{BTC_VES_avg | number:0.0}}</span><!--span> Bs/bitcoin</span-->
+
+						<br/><br>
+						<!--tasa yadio promedio COMPRA BTC-Bs-->
+						<span style="color: blue">BTC/Bs Compra - </span><span style="font-weight: bold; align-text:right">{{BTC_VES_buy | number:0.0}}</span><!--span> Bs/BTC</span-->
+
+						<br/><br>
+						<!--tasa yadio promedio VENTA BTC-Bs-->
+						<span style="color: blue">BTC/Bs Venta - </span><span style="font-weight: bold; align-text:right">{{BTC_VES_sell | number:0.0}}</span><!--span> Bs/BTC</span-->
 						<br><br>
 
 						<hr>
@@ -36,8 +47,12 @@
 						<span>Guaraníes por dólar</span>
 
 						<br/><br/>
-						<span style="color: red">$PYG/VES - </span><span style="font-weight: bold">{{ PYG_VES | number:2.1}}</span>
+						<span style="color: red">PYG/VES - </span><span style="font-weight: bold">{{ PYG_VES | number:2.1}}</span>
 						<span>Bs por Guaraní</span>
+
+						<hr>		
+						<br><br>
+						<a href="https://api.yadio.io/json/" target="_BLANK">Confirmar Info (BTC/USD/Bs)</a>
 
 						<br/><br/>
 						<a href="https://api.yadio.io/rate/PYG" target="_BLANK">Confirmar Info (Paraguay)</a>
@@ -72,10 +87,10 @@
 			<h3 style="color:rgb(29, 161, 242); font-weight:400">Simulador</h3>
 			<!--h5>(con Tasas Reales)</h5-->
 
-			<form >
+			<form>
 				<b>Montos sin comisión:</b>
 				<br><br>
-				Gs (Guaraníes)
+				Gs-Guaraníes
 				<input name="monto1" type="number" min="6000"
 				ng-model="monto1"
 				ng-change="calcularMontoUSD(); calcularMontoDestino_B(); "
@@ -88,7 +103,7 @@
 						establecer paso del monto: step="50"
 					-->
 					<br>
-					$USD (dólar)
+					$USD-dólares
 					<input type="number" name="montoUSD" ng-model="montoUSD"
 					step="0.01" min="1" max="1000000"
 					ng-change="calcularMontoOrigen_1();calcularMontoDestino_A();"
@@ -102,7 +117,7 @@
 						ng-min="1" ng-max="200" min="1" max="200"
 					-->
 					<br>
-					<span>Bs</span>
+					<span>Bs-Bolívares</span>
 					<input type="text" name="monto2" ng-model="monto2"
 					step="1" readonly
 					class="form-control input-sm"
@@ -121,15 +136,15 @@
 				style="width: 150px">
 
 				<br>
-				<b>Montos de Remesa con Comisión</b>
+				<b>Montos con Comisión</b>
 				<br><span>Gs  <b>{{monto1_final   | number:0.0}}</b></span>
 				<br><span>USD <b>{{montoUSD_final | number:1.2}}</b></span>
-				<br><span>Bs  <b>{{montoBs_final  | number:0.0}}</b></span>
+				<br><span>Bs  <b>{{montoBs_final  | number:1.2}}</b></span>
 
 				<br>
 				<b>
 					<br>Tasa Bs. por dólar: <span>{{ tasa_USD_Bs_final | number:0.2 }}</span>				
-					<br>Tasa Bs. por Gs   : <span>{{ tasa_Gs_Bs_final  | number:1.1 }}</span>
+					<br>Tasa Bs. por Gs   : <span>{{ tasa_Gs_Bs_final  | number:0.2 }}</span>
 				</b>
 				<!--b>
 					<br>Tasa Bs. por dólar: <span>{{montoBs_final / montoUSD_final | number:0.0}}</span>				
@@ -138,39 +153,33 @@
 
 				<br><br>
 				<b>Comisión 
-				{{porc_comision | number:0.2}}%</b> <!--br>% de comisión:--> 
+				{{porc_comision | number:0.2}} %</b> <!--br>% de comisión:--> 
 				<!--TODO. pasar formulas al controlador-->
-				<br><span>Gs {{monto1 * porc_comision/100  | number:0.0}}</span>
-				= <span>USD {{montoUSD * porc_comision/100 | number:1.2}}</span>
+				<b> = </b><span>Gs {{monto1 * porc_comision/100  | number:0.0}}</span>
+				<b> = </b><span>USD {{montoUSD * porc_comision/100 | number:1.2}}</span>
 				<!--br><span><b>Bs {{monto2 - montoBs  | number:0.0}}</b></span-->
 
 				</form>
 				<br>
-
-			</form>
-			<br><br>
+			</div>
 		</div>
-	</div>
-
-	<div class="row">
-
-<span>
-Fecha último cambio: 2020-06-10, hora: 08:14
-</span>
-	</div>	
-</div>
-</div>
-</div>
-</div>
 
 
+		<div class="row">
+			<div class="col-sm-12">
+				<h5 style="color:rgb(29, 161, 242)">Herramientas</h5>
+				<ul>
+					<li><a href="https://yadio.io/calc.html" target="_BLANK">Calculadora Yadio</a></li>
+					<li><a href="https://yadio.io/today.html" target="_BLANK">Gráfica Hoy</a></li>
+					<li><a href="https://yadio.io/charts.html" target="_BLANK">Gráfica Hist. Bs/BTC/$USD</a></li>
+					<li><a href="https://yadio.io/market.html" target="_BLANK">Mercado Yadio Venta BTC</a></li>
+					</ul>
+				</div>
+
+				<!--span>
+					Última modificación: 2020-06-29, hora: 07:51
+				</span-->
+			</div>	
 
 
-			<!--div class="col-sm-12">
-					<h5 style="color:rgb(29, 161, 242)">Herramientas</h5>
-					<ul>
-						<li><a href="https://yadio.io/calc.html" target="_BLANK">Calculadora Yadio</a></li>
-						<li><a href="https://yadio.io/today.html" target="_BLANK">Gráfica Hoy</a></li>
-						<li><a href="https://yadio.io/charts.html" target="_BLANK">Gráfica Hist. Bs/BTC/$USD</a></li>
-			</ul>
-		</div-->
+

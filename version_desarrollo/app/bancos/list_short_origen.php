@@ -35,7 +35,7 @@ if (!isset($codpais)  || $codpais == ""){
 //$sql ="SELECT codigo, nombre FROM banks_pais WHERE activo=1 AND codpais='" . $codpais . "VEN' ORDER BY nombre";
 
 //considerando cualquier pais elegido
-$sql ="SELECT codigo, nombre FROM banks_pais WHERE activo=1 AND codpais='" . $codpais . "'"; // ORDER BY nombre";
+$sql ="SELECT codigo, nombre FROM banks_pais WHERE activo=1 AND codpais='" . $codpais . "' ORDER BY nombre";
 //echo("sql:".$sql);
 $result = $conn->query($sql);
 

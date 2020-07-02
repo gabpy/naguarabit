@@ -46,13 +46,17 @@
   <td><a title="Ver + detalles" href="#!/banco/{{ x.codigo }}">{{ x.codigo }}</a></td>
   <td><a title="Ver + detalles" href="#!/banco/{{ x.nombre }}">{{ x.nombre }}</a></td>
   <td>{{ x.nombre_largo }}</td>
-  <td>{{ x.nombre_pais }}</td>
+  <td><a href="#!/bancos/{{ x.codpais }}" title="Ver sólo los bancos de {{ x.nombre_pais }} (*pendiente)">{{ x.nombre_pais }}</a></td>
   <!--TODO. posible. colocar  campo observaciones-->
 </table>
 
 <div>
+
+<!--TODO. programar opcion para agregar banco, asi como agrego pais
+<a title="Agregar registro *pendiente*" href="#!/pais/new">Agregar</a>
+-->
+
 <!--
-  <a title="Agregar registro" href="#!/pais/new">Agregar</a>
 -->
 <!--opcion b, que ctrl de paises cambie url a pais/new
   <a title="Agregar registro" href="#!/paises/new">Agregar</a>

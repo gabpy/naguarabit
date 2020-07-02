@@ -1,9 +1,24 @@
 <!--login, con imagen de fondo: montañas-->
 <div>
   <div class="d-flex justify-content-center h-100">
+    <div>
+      <!--botones Iniciar Sesión con Facebook y Google-->
+      <div class="card-body">
+        <fb:login-button
+      scope="public_profile,email"
+      onlogin="checkLoginState();">
+        </fb:login-button>
+
+      </div>
+        <div style="display-block: inline" class="g-signin2" data-onsuccess="onSignIn" title="Iniciar Sesión con tu cuenta Google Gmail"></div>
+    </div>
     <div class="card">
       <div class="card-header">
-        <h3>Login</h3>
+        <h3>Acceso</h3>
+        <!--div class="d-flex justify-content-end social_icon">
+          <span title="Acceso con Facebook"><fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button></span>
+          <span title="Acceso con Google"><div style="display-block: inline" class="g-signin2" data-onsuccess="onSignIn" title="Iniciar Sesión con tu cuenta Google Gmail"></div></span>
+        </div-->
         <!--div class="d-flex justify-content-end social_icon">
           <span title="Acceso con Google"><i class="fab fa-google-plus-square"></i></span>
           <span title="Acceso con Facebook"><i class="fab fa-facebook-square"></i></span>
@@ -35,6 +50,18 @@
           </div>
         </form>
       </div>
+
+        <!--botones Iniciar Sesión con Facebook y Google-->
+      <!--div class="card-body">
+        <fb:login-button
+      scope="public_profile,email"
+      onlogin="checkLoginState();">
+        </fb:login-button>
+  
+        <div style="display-block: inline" class="g-signin2" data-onsuccess="onSignIn" title="Iniciar Sesión con tu cuenta Google Gmail"></div>
+        <div></div>
+      </div-->
+
       <!--div class="card-footer">
         <div class="d-flex justify-content-center links">
           <a href="#">Regístrate</a>

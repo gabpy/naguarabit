@@ -11,8 +11,9 @@
           <!--(<b>Gs.:</b> 60.000 a 3.000.000)<br-->
         </span>
         <span ng-show="paso==1"><br>
-          <b>Límites por transacción</b> <br>
-          <span style="color:red"><b>$USD:</b> 10 a 200 dólares.<br></span>
+          <span style="color:blue">
+            <b>Límites: </b><br>
+            1 a 200 dólares ($USD)<br></span>
         </span>
 
 
@@ -37,7 +38,8 @@
 
         <span ng-show="paso==4"><h4>Paso 4</h4>
           <br>Indique los datos de la cuenta bancaria a la que se hará la transferencia.<br><br>
-        Al finalizar la transacción se le enviará un comprobante por correo. Igualmente puede descargarlo.
+        Al realizar la remesa se le notificará por correo.
+        <!--Igualmente puede descargarlo.-->
           <!--TODO. agregar esta mejora. para posteriores versiones
           <br>
           Si quiere transferir a mas de una cuenta, presione el boton <b>Agregar Otra Cuenta</b>, luego de grabar la primera cuenta.-->
@@ -53,10 +55,10 @@
   title="Saltar este paso">Saltar este Paso</span-->
 
       <br><br>
-          <i>Si ya tienes usuario: .<!--br> saltar este paso.--></i>
+          <i>Si ya tienes usuario, <a href="!#/login" title="Acceder a la plataforma">puedes acceder aquí</a></i>
+
           <!--TODO. usar link en vez de botón-->
-          <button class="button-centrado" ng-click="#/login" ng-show="paso == 5" 
-  title="Acceder a la plataforma">Acceder</button>
+          <button class="button-centrado" href="#!/login" ng-show="paso == 5" title="Acceder a la plataforma">Acceder</button>
 
         </span>
 

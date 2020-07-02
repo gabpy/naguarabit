@@ -6,7 +6,7 @@ angular.module('myApp', [
   ,'myApp.version'
   ,'myApp.view1'
   ,'myApp.view2'
-  ,'myApp.saludo'
+  ,'myApp.inicio'
   ,'myApp.usuarios'
   ,'myApp.user'
   ,'myApp.paises'
@@ -28,7 +28,7 @@ angular.module('myApp', [
   ,'myApp.modal'
   ,'myApp.mail'
   ,'myApp.simulador'
-  //,'myApp.api'
+  ,'myApp.develop'
   //,'ui.bootstrap.demo'
 ])
 .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {

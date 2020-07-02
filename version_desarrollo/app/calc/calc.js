@@ -1,6 +1,4 @@
-/*
-controlador asociado a template de calc/calculo.html
-*/
+//controlador asociado a template de calc/calculo.html
 
 'use strict';
 
@@ -70,14 +68,17 @@ angular.module('myApp.calc', ['ngRoute'])
       });
     }
   }
-}).filter('comma2decimal', [
-function() {
-  return function(input) {
-    var ret=(input)?input.toString().replace(/,/g, "."):null;
-    return ret;
-  };
-}
-])
+})
+
+//filtro para mostrar el separador decimal de un monto con coma
+.filter('comma2decimal', [
+  function() {
+    return function(input) {
+      var ret=(input)?input.toString().replace(/,/g, "."):null;
+      return ret;
+    };
+  }
+  ])
 
 
 //ctrl que maneja los datos de calculadora, o sea la solicitud de remesa
@@ -137,10 +138,101 @@ $scope.cargarBancosOrigen = function () {
 }
 
 
+//EN PROGRESO: TODO. USAR funcion
+//trae info de la API Yadio, con tasas promedio
+//guarda en la variable data
+$scope.getDataYadio = function() {
+  console.log('CtrlAPI.getDataYadio.inicio');
+
+  var URLconsulta = "./simulador/api1_get.php";
+    //debugger;
+    $http.get(URLconsulta)
+    .then(function(response) {
+      //debugger;
+      if (response.data.records != null){
+        $scope.dataYadio = response.data.records;
+        //bloques de datos
+        $scope.VES = $scope.dataYadio[0]['VES'];
+        $scope.BTC = $scope.dataYadio[0]['BTC'];
+        $scope.USD = $scope.dataYadio[0]['USD'];
+
+     //valores particulares, tasas especificas
+    //valor de BTC en USD
+    $scope.BTC_USD_price = $scope.BTC['price'];
+    //precio venta de 1 BTC por Bs
+    $scope.BTC_VES_sell = $scope.VES['sell']; 
+    //Tasa de Bs por USD
+    $scope.USD_VES_rate = $scope.USD['rate'];
+    //Tasa de Guaranies por USD (USD/Gs)
+    $scope.USD_PYG = $scope.USD['PYG'];
+
+    console.log('Consultando data de API Yadio...');
+    console.log('BTC/USD: ' + $scope.BTC_USD_price);
+    console.log('USD/Bs : ' + $scope.USD_VES_rate);
+    console.log('BTC/Bs : ' + $scope.BTC_VES_sell);
+    console.log('USD/PYG : ' + $scope.USD_PYG);
+
+    $scope.dataOk = true;
+
+    $scope.getDataYadioMonedaPYG();
+
+  }
+  else{
+    $scope.msg = "Data en API no encontrada. URL de busqueda: " + URLconsulta;
+  }
+},
+function(data, status) {
+      //debugger;
+      console.error('Error en SERVICIO de consulta de datos: ', status, data);
+    });   //TODO: gestionar error, cuando no se traigan los datos del usuario, mostrar mensaje en vista
+    console.log('CtrlAPI.getDataYadio.inicio');
+};//getDataYadio
+
+
+//obtiene info de API Yadio para una moneda especifica, en este caso el guarani de PARAGUAY (PYG)
+//y la guarda en la variable data3
+$scope.getDataYadioMonedaPYG = function() {
+  console.log('Ctrlsimulador.getDataYadioMonedaPYG.inicio. moneda: PYG');
+
+    //TODO. especificar moneda a la URL, por ahora es PYG
+    var URLconsulta = "./simulador/api_yadio_get_moneda.php";
+    //debugger;
+    $http.get(URLconsulta)
+    .then(function(response) {
+      //debugger;
+      if (response.data.records != null){
+        $scope.data3 = response.data.records;
+        //console.log('Ctrlsimulador.getDataYadioMonedaPYG.inicio. moneda: PEN. respuesta api:');
+        console.log(response.data)
+        //valores particulares, tasas especificas
+        $scope.PYG_VES = $scope.data3[0]['rate'];//bs por guarani, tasa promedio
+        $scope.USD_PYG_rate = $scope.data3[0]['usd']; //guaranies por dolar, tasa promedio
+        
+        console.log('Ctrlsimulador.data:');
+        console.log('PYG_VES: '+$scope.PYG_VES);
+        console.log('USD_PYG_rate: '+$scope.USD_PYG_rate);
+
+        //analizar si es necesario esta variable
+        $scope.dataOk = $scope.dataOk && true;
+
+        $scope.aplicarComisionTasas();
+
+      }
+      else{
+        $scope.msg = "Data  no encontrada. URL de busqueda: " + URLconsulta;
+      }
+    },
+    function(data, status) {
+      //debugger;
+      console.error('Error en SERVICIO de consulta de datos: ', status, data);
+    });   //TODO: gestionar error, cuando no se traigan los datos del usuario, mostrar mensaje en vista
+    console.log('Ctrlsimulador.getDataYadioMonedaPYG.fin');
+};//getDataYadioMonedaPYG
 
 //setea datos por defecto
 $scope.initData = function() {
-   //TODO. traer valores de la bd
+   //TODO. traer valores del api
+
     //valores de compra/venta dolar usando BTC
     var limites_montos_Gs = {min:65000, max:1300000}; //de 5 a 200 dolares {min:18000, max:3000000};
     var limites_montos_Bs = {min:110000, max:2000000};
@@ -188,8 +280,8 @@ $scope.initData = function() {
 
 
 
-//TODO.obtener nombre de pais, dado su codigo desde la bd
-//obtiene nombre de pais, dado su codigo
+//TODO.usar query de la bd
+//obtiene nombre de pais, proporcionando su codigo
 //usar variable lista_paises
 $scope.getNombrePais = function() {
   var paises = {PAR:'Paraguay', VEN:'Venezuela', URU:'Uruguay', ARG: Argentina};
@@ -199,9 +291,9 @@ $scope.getNombrePais = function() {
 
 
 //TODO. debe obtener lista de  tasas de cambio entre monedas mediante API's o consultas en BD
-//igual al usado en el controlador api/api.js
+//igual al usado en el controlador de simulador
 $scope.setTasasCambio = function() {
-    //$scope.factoresCambio = {{'GS','BS', 2}}; //calcular
+    //$scope.factoresCambio = {{'GS','BS', 2}}; //enprogreso con funciones que usan api
     $scope.tasas_cambio_dolar = {
       //valor en Gs, al comprar BTC, equivalente a 1 dolar
       Gs_BTC_compra: 6500, //6472.06 tasa cuando comence a programar este modulo, usando btc
@@ -229,13 +321,16 @@ $scope.calcular2_A = function() {
 
  console.log('controlador:calc. monto1=' + $scope.data.monto1);
  console.log('controlador:calc. monto2='+$scope.data.monto2);
+
+ //TODO. solo usar esta funcion, dejar de usar todo lo anterior de esta funcion
+ //calcularMontoDestinoconComision();
 };
 
 
 
-//calcula monto1 basado en monto2 y en tasas de cambio
-//segun la formula
-//monto1 = monto2 * (valor de 1$ en Gs "a la compra") * (Valor de 1$ en Bs "a la venta")
+//calcula monto origen, basado en monto en dolares
+//es decir: calcula monto1 basado en monto2 y en tasas de cambio, segun la formula
+//monto1 = monto2 * (valor de 1$ en Gs "a la compra")
 //siendo:
 //monto1: monto en pais de origen
 //monto2: monto en pais de destino
@@ -246,8 +341,8 @@ $scope.calcular1_A = function() {
 };
 
 
-//calcula monto3 basado en monto1
-//esto es: calcula monto en USD, basado en monto origen
+//calcula monto en USD, basado en monto origen
+//esto es: calcula monto3 basado en monto1
 //monto3 = monto1 / (valor de 1$ comprado con moneda de origen)
 $scope.calcular3_A = function() {
  $scope.data.monto3 = 0;
@@ -271,6 +366,7 @@ $scope.calcular3_B = function() {
  console.log('monto2=' + $scope.data.monto2);
 
  $scope.data.monto3 = 0;
+ //validacion
  if (!$scope.data.monto2 || $scope.data.monto2 == 0 || $scope.data.monto2 == "") return;
 
  var monto3 = $scope.data.monto2 / $scope.tasas_cambio_dolar['BTC_Bs_venta'];
@@ -390,30 +486,61 @@ $scope.goBack = function (){
 };
 
 
-/*TODO
-  //captura parametro - modo operacion
-  $scope.capturarParametro = function(){
-    $scope.codigo = $routeParams.codigo;
-    console.log('codigo: ' + $scope.codigo);
-    //TODO. validar parametro codigo:
-    //que no sea vacio, solo que tenga caracteres validos, longitud, no comience con un nro,etc...
-  }
-  */
+//aplicar porcentaje de comision a las tasas de cambios
+$scope.aplicarComisionTasas = function(){
+  console.log('aplicarComisionTasas:');
+  console.log('porc_comision: ' + $scope.porc_comision);
 
-  $scope.init_function = function(){
-    console.log('controlador -calc- init_function. inicio');
-    $scope.saludo = "Saludo desde CTRL CALCULADORA";
+  var tasa_Gs_Bs_final    = $scope.PYG_VES * (1 - $scope.porc_comision/100);
+  $scope.tasa_Gs_Bs_final = tasa_Gs_Bs_final.toFixed(2); //round a 2 decimales
 
-    $scope.modo = 'CALC';
-    $scope.initData();
-    $scope.cargarPaises();
-    $scope.cargarBancosDestino();
-    $scope.cargarBancosOrigen();
-    $scope.setTasasCambio();
-    $scope.calcular3_A();
-    $scope.calcular2_A();
-    $scope.setResumenOrigen();
-    
+  var tasa_USD_Bs_final    = $scope.USD_VES_rate * (1 - $scope.porc_comision/100);
+  $scope.tasa_USD_Bs_final = tasa_USD_Bs_final.toFixed(2); //round a 2 decimales
+
+  console.log('tasa_USD_Bs_final: ' + $scope.tasa_USD_Bs_final);
+  console.log('tasa_Gs_Bs_final: ' + $scope.tasa_Gs_Bs_final);
+
+  $scope.calcularMontoDestinoconComision();
+
+};  
+
+$scope.calcularMontoDestinoconComision = function(){
+  //recalcular montos con comision
+  var monto2    = $scope.monto1 * $scope.tasa_Gs_Bs_final; //monto-origen * tasa origen-destino
+  $scope.monto2 = monto2.toFixed(0); //0 decimales 
+}
+
+
+  //TODO. agregar funcion. para cuando cambie la seleccion del pais origen, y pais destino
+  //traer los valores de moneda correspondientes:
+  //codmoneda, nombreplural
+  //ademas calcular: montolimite minimo y maximo permitidos
+  //asignar todos esos datos a la variable data
+
+$scope.init_function = function(){
+  console.log('controlador -calc- init_function. inicio');
+  $scope.saludo = "Saludo desde CTRL CALCULADORA";
+
+  //porc comision remesa
+  $scope.porc_comision = 7.00;
+  $scope.tasa_USD_Bs_final = 0;
+
+
+  $scope.getDataYadio();
+  //$scope.getDataYadioMonedaPYG();
+
+  $scope.modo = 'CALC';
+  $scope.initData();
+  $scope.cargarPaises();
+  $scope.cargarBancosDestino();
+  $scope.cargarBancosOrigen();
+  $scope.setTasasCambio();
+  $scope.calcular3_A();
+  $scope.setResumenOrigen();
+  
+  $scope.calcular2_A();
+  //$scope.calcularMontoDestinoconComision();
+
     //estatus de pago, indica si el usuario ya realizó notificación de pago en origen
     $scope.pago = 0;
 
@@ -437,15 +564,9 @@ $scope.goBack = function (){
     console.log('controlador -ciudad- init_function. fin');
   }
 
-  //TODO. agregar funcion. para cuando cambie la seleccion del pais origen, y pais destino
-  //traer los valores de moneda correspondientes:
-  //codmoneda, nombreplural
-  //ademas calcular: montolimite minimo y maximo permitidos
-  //asignar todos esos datos a la variable data
-
   //INICIO CONTROLADOR
   $scope.init_function();
-  
+
 }]);
 
 //TODO. mejor crear otra vista y ctrl, para manejar la pantalla cuando sea modo PAGO
@@ -456,13 +577,10 @@ $scope.goBack = function (){
 
 //incorpora variable para subir imagenes
 angular.module('myApp.calcPago', ['angularFileUpload'])
-    .controller('AdjuntosCtrl', function($scope, FileUploader) {
-      $scope.uploader = new FileUploader();
-      console.log('mensaje desde AppController con angularFileUpload')
+.controller('AdjuntosCtrl', function($scope, FileUploader) {
+  $scope.uploader = new FileUploader();
+  console.log('mensaje desde AppController con angularFileUpload')
 });
-/*
-*/
-
 
 
 
@@ -475,3 +593,13 @@ angular.module('myApp.calcPago', ['angularFileUpload'])
   });
 }])
 */
+
+/*TODO
+  //captura parametro - modo operacion
+  $scope.capturarParametro = function(){
+    $scope.codigo = $routeParams.codigo;
+    console.log('codigo: ' + $scope.codigo);
+    //TODO. validar parametro codigo:
+    //que no sea vacio, solo que tenga caracteres validos, longitud, no comience con un nro,etc...
+  }
+  */
