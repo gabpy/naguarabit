@@ -249,8 +249,20 @@ Configuración
       </div>
 
       <div class="text-muted small float-right">
-        <i class="far fa-edit"></i> <span id="last_updated"></span>
-        <span id="last_updated">30-Junio-2020 / 17.20 PM (Venezuela)</span>
+        <i class="far fa-edit"></i>
+        <!--span id="last_updated">30-Junio-2020 / 17.20 PM (Venezuela)</span-->
+        <span id="last_updated">
+          <script>
+function myFunction() {
+  /*
+  var n = Date.now();
+  document.getElementById("last_updated").innerHTML = n;
+  */
+  var d = new Date();
+  document.write(d.getDate() + ', ' + d.getHours());
+}
+</script>
+ (Venezuela)</span>
       </div>
     </div>
   </footer>

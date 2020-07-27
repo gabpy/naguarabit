@@ -210,13 +210,12 @@ $scope.reset = function() {
   $scope.master = {id: "", codigo:"", nombre:"", observ:"", cod_moneda:""};
   $scope.data = angular.copy($scope.master);
 
-  //TODO. DESEO. colocar cursor en primer campo
-  /**/
+  /*
+  //colocar cursor en primer campo
   var target = document.getElementById('#codigo');
   //var target = angular.element(codigo);
   console.log('controlador -ciudad- reset(). target = ' + target);
   /**/
-
   console.log('controlador -ciudad- reset(). fin');
 };
 
@@ -273,8 +272,10 @@ $scope.init_function = function(){
   $scope.capturarParametro();
   if($scope.codigo == 'new'){
     console.log('opcion NEW');
+    $scope.modo = 'new';
     $scope.reset();
   }else{
+    $scope.modo = ''
     $scope.showData();
   }
   console.log('controlador -ciudad- init_function. fin');

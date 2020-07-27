@@ -38,7 +38,7 @@
     <button type="button" class="button2" ng-click="save()">Guardar</button>
     <button type="button" class="button2" ng-click="saveAndReset()">Guardar y Agregar(+)</button>
     <!--TODO. mostrar mensaje de confirmacion antes de borrar-->
-    <button type="button" class="button2" ng-click="delete()">Borrar</button>
+    <button type="button" class="button2" ng-click="delete()" ng-if="modo != 'new' ">Borrar</button>
 
 <!-- TODO. quitar boton.solo de pruebas
    <button ng-click="reset()">(Agregar)</button>
@@ -79,7 +79,7 @@ Show exito: <input type="checkbox" ng-model="mostrarExito" aria-label="Toggle ng
   <p>{{msg}}</p>
   <!--TODO. evaluar si sale este mensaje aqui, creo que mejor no-->
   <p>
-    <a href="#!/ciudades">Regresar a lista</a>
+    <a href="#!/ciudades">Volver a Lista de Ciudades</a>
   </p>
   <!-- -->
 </div>
@@ -94,31 +94,13 @@ Show exito: <input type="checkbox" ng-model="mostrarExito" aria-label="Toggle ng
 </div>
 
 </div>
+
+
+<div id="debug" ng-if="false">
+  <!--debug. mostrar todo estos datos si el nivel de depuracion de la app es DEBUG-ALL. colocarlo dentro de otro div-->
+  <p>modo: {{modo}}</p>
 </div>
-
-<!--enfoque2 para llenar select. segun
-    https://stackoverflow.com/questions/39476181/angularjs-1-5-8-how-do-i-populate-a-select-option-list-directly-from-within
-
-  <select data-ng-model="data.cod_moneda" ng-options="moneda.codigo as moneda.nombre for moneda in lista_monedas" >
-    </select>
-  -->
-
-    <!--valores fijos
-    <select  name="cod_moneda" data-ng-model="data.cod_moneda" class="form-control input-sm">
-      <option value = "">--Seleccione una Opcion--</option>
-      <option value = "$ARG">Peso Argentino</option>
-      <option value = "$BOL">Peso Boliviano</option>
-      <option value = "$COL">Peso Colombiano</option>
-      <option value = "$CHI">Peso Chileno</option>
-      <option value = "ECU">Moneda de Ecuador?...</option>
-      <option value = "GS">Guarani</option>
-      <option value = "PAN">Moneda de Panama...</option>
-      <option value = "PER">Sol Peruano</option>
-      <option value = "BS">Bolivar</option>
-    </select>
-  -->
-
-
+</div>
 
 
 

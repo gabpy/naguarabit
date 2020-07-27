@@ -19,6 +19,8 @@ angular.module('myApp.calc', ['ngRoute'])
   });
 }])
 
+
+
 //directiva para auto-focus de un input
 .directive('autoFocus', function($timeout) {
   return {
@@ -39,7 +41,8 @@ angular.module('myApp.calc', ['ngRoute'])
       })
 
 
-//directiva para manejo de input tipo montos, permite mostrar punto como separador de miles, cuando se está escribiendo en el input
+
+//directiva para manejo de input tipo monto, permite mostrar punto como separador de miles, cuando se está escribiendo en el input
 .directive('blurToCurrency', function($filter){
   return {
     scope: {
@@ -70,6 +73,8 @@ angular.module('myApp.calc', ['ngRoute'])
   }
 })
 
+
+
 //filtro para mostrar el separador decimal de un monto con coma
 .filter('comma2decimal', [
   function() {
@@ -79,6 +84,7 @@ angular.module('myApp.calc', ['ngRoute'])
     };
   }
   ])
+
 
 
 //ctrl que maneja los datos de calculadora, o sea la solicitud de remesa
@@ -98,6 +104,7 @@ angular.module('myApp.calc', ['ngRoute'])
     })
     console.log('controlador:calc. funcion: cargarPaises. end');
   };
+
 
 
 //carga lista de bancos para pais destino
@@ -121,7 +128,10 @@ $scope.cargarBancosDestino = function () {
   console.log('controlador -calc- cargarBancosDestino. fin');
 }
 
-//carga lista de bancos para pais origen
+
+
+//carga lista de formas de pago para poblar el select de forma pago en origen
+//bancos, giros, WU, etc.
 $scope.cargarBancosOrigen = function () {
   console.log('controlador -calc- cargarBancosOrigen. inicio');
   var codpaisOrigen = $scope.data.cod_pais1;
@@ -136,6 +146,7 @@ $scope.cargarBancosOrigen = function () {
   });
   console.log('controlador -calc- cargarBancosDestino. fin');
 }
+
 
 
 //EN PROGRESO: TODO. USAR funcion
@@ -189,6 +200,7 @@ function(data, status) {
 };//getDataYadio
 
 
+
 //obtiene info de API Yadio para una moneda especifica, en este caso el guarani de PARAGUAY (PYG)
 //y la guarda en la variable data3
 $scope.getDataYadioMonedaPYG = function() {
@@ -229,6 +241,8 @@ $scope.getDataYadioMonedaPYG = function() {
     console.log('Ctrlsimulador.getDataYadioMonedaPYG.fin');
 };//getDataYadioMonedaPYG
 
+
+
 //setea datos por defecto
 $scope.initData = function() {
    //TODO. traer valores del api
@@ -245,39 +259,136 @@ $scope.initData = function() {
   };
   $scope.data = angular.copy($scope.main);
 
+  //datos destino
+  $scope.destino={observ:''};
+
   //observaciones del usuario
   $scope.user={observ:''};
 
   //TODO. sacar la variable formapago del arreglo, usar variable simple
   //forma de pago Deposito Bancario
-  $scope.origen={observ:'',formapago:'', nombrebank:'Itaú', nrocta:'12345678901234567890', nombretitular:'Dina Osma', doctitular:'1234567',
+  /*
+  $scope.origen={observ:'',formapago:'BITAU', nombrebank:'Itaú', nrocuenta:'12345678901234567890', nombretitular:'Dina Osma', doctitular:'1234567',
+  comprobantePago:''};
+  /**/
+
+  $scope.origen={observ:'',formapago:'', nombrebank:'', nrocuenta:'', nombretitular:'', doctitular:'',
   comprobantePago:''};
 
+  //TODO. pasar estos datos a la bd, y traer con query
   //forma de pago GIRO
-  $scope.origen.giro={observ:'',nrotlf: '+595-889-5343434', nombretitular:'Dina Osma', doctitular:'8594651'};
-  $scope.destino={observ:''};
+  //$scope.origen.giro={observ:'',nrotlf: '+595-889-5343434', nombretitular:'Dina Osma', doctitular:'8594651'};
+
+  //TODO. pasar estos datos a la bd, y traer con query
+  //forma de pago: WU
+  //$scope.origen.wu={observ:'', nombretitular:'', doctitular:''};
+  //$scope.origen.wu={observ:'', nombretitular:'Dina Osma', doctitular:'8594651'};
 };
 
 
-/*
-  establece valor para datos pago en origen
-  */
+
+  //establece valores para forma de pago en origen
   $scope.setResumenOrigen = function() {
-    var resumen = '';
     var formaPago = $scope.origen.formapago;
-    if (formaPago == 'DEP'){
-      resumen += 'Banco:             ' + $scope.origen.nombrebank + '\n';
-      resumen += 'Número de cuenta:  ' + $scope.origen.nrocta + '\n';
-      resumen += 'Nombre de Titular: ' + $scope.origen.nombretitular + '\n';
-      resumen += 'Cédula de Titular: ' + $scope.origen.doctitular;
-    }else if (formaPago=='GTIGO' || formaPago=='GCLARO' || formaPago=='GPERS'){
-      resumen += 'Número de Teléfono:   ' + $scope.origen.giro.nrotlf + '\n';
-      resumen += 'Nombre de Titular:    ' + $scope.origen.giro.nombretitular + '\n';
-      resumen += 'Documento de Titular: ' + $scope.origen.giro.doctitular;
+    var resumen = '';
+    $scope.origenResumen = '';
+    console.log('forma de pago: ' + formaPago);
+    console.log('1era letra de forma de pago: ' + formaPago.charAt(0));
+
+    if (!formaPago || formaPago.charAt(0) == '') return null;
+
+    //TODO. terminar. AHORA. ENPROGRESO
+    $scope.datosPagoOrigen        = {};
+    //$scope.datosPagoOrigen        = $scope.getDatosBanco(formaPago);
+    console.log('codigo de forma de pago: ' + formaPago.toUpperCase());
+    $http.get("./bancos/get.php?codigo=" + formaPago)
+    .then(function (response) {
+      $scope.datosPagoOrigen = response.data.records[0];
+      console.log('datos de forma de pago:');
+      console.log($scope.datosPagoOrigen);
+      if (!$scope.datosPagoOrigen || $scope.datosPagoOrigen.length <=0){
+        $scope.showData = false;
+        return false;
+      }     
+      $scope.showData = true;
+
+      $scope.origen.nombrebank     = $scope.datosPagoOrigen.nombrebank;
+      $scope.origen.nrocuenta      = $scope.datosPagoOrigen.nrocuenta;
+      $scope.origen.tipocuenta     = $scope.datosPagoOrigen.tipocuenta;
+      $scope.origen.tipocuenta_desc = $scope.datosPagoOrigen.tipocuenta_desc;
+      $scope.origen.nombretitular  = $scope.datosPagoOrigen.nombretitular;
+      $scope.origen.doctitular     = $scope.datosPagoOrigen.doctitular;
+      $scope.origen.observ         = $scope.datosPagoOrigen.observ;
+      $scope.origen.descripcion    = $scope.datosPagoOrigen.descripcion;
+      $scope.origenResumen         = $scope.datosPagoOrigen.descripcion;
+      //resumen                      = $scope.datosPagoOrigen.descripcion;
+      //', nombrebank:'Itau', nombre_largo:nombre_largo, nombretitular:'Dina Osma', doctitular:'1234567', comprobantePago:''};
+
+    if (formaPago.charAt(0) == 'B'){ //banco
+      console.log('Forma de pago es banco. Hay que mostrar resumen y todos los datos del banco');
+
+      /*version anterior: mostrar resumen con campos separados:*/
+      resumen += '' + $scope.origen.nombrebank + '\n';
+      resumen += '' + $scope.datosPagoOrigen.tipocuenta_desc + '\n';
+      resumen += 'Número de cuenta:  ' + $scope.datosPagoOrigen.nrocuenta + '\n';
+      //resumen += 'Tipo de cuenta:  '   + $scope.datosPagoOrigen.tipocuenta_desc + '\n';
+      resumen += 'Nombre Titular: ' + $scope.datosPagoOrigen.nombretitular + '\n';
+      resumen += 'Documento: ' + $scope.datosPagoOrigen.doctitular;
+      /**/
+    } else if (formaPago.charAt(0) =='G'){ //giro
+      console.log('Forma de pago es giro');
+      resumen += 'Número Teléfono:   ' + $scope.datosPagoOrigen.nrotlf + '\n';
+      resumen += 'Nombre:    ' + $scope.datosPagoOrigen.nombretitular + '\n';
+      resumen += 'Documento: ' + $scope.datosPagoOrigen.doctitular;
+    } else if (formaPago=='WU'){//western union
+      console.log('Forma de pago es Western Union');
+      resumen += 'Nombre Completo:    ' + $scope.datosPagoOrigen.nombretitular + '\n';
+      resumen += 'Cédula/Pasaporte: '   + $scope.datosPagoOrigen.doctitular + '\n';
+      //resumen += 'Ciudad: '             + $scope.datosPagoOrigen.ciudad;
     }
+    
     $scope.origenResumen = resumen;
+    console.log('origenResumen: ' + $scope.datosPagoOrigen.descripcion);
+
+  },
+  function(data, status) {
+    console.error('Error en SERVICIO consulta bancos/get. ', status, data);
+    $scope.msg = "Error consultando datos: SERVICIO de consulta de get_banco_detalles";
+  });
+
+
+
+    
+
+
+
   };
 
+
+/*
+//TODO. AHORA. pasar contenido de esta funcion a donde ahora se está llamando
+//Obtener datos de un banco o forma de pago en particular
+$scope.getDatosBanco = function(codFormaPago){
+  console.log('controlador -calc - getDatosBanco. inicio');
+  console.log('codigo de forma de pago: ' + codFormaPago.toUpperCase());
+  $scope.datos_banco={};
+  $http.get("./bancos/get.php?codigo=" + codFormaPago)
+  .then(function (response) {
+    $scope.datos_banco = response.data.records;
+    console.log('datos de forma de pago:');
+    console.log($scope.datos_banco);
+    //', nombrebank:'Itau', nombre_largo:nombre_largo, nombretitular:'Dina Osma', doctitular:'1234567', comprobantePago:''};
+    //
+
+  },
+  function(data, status) {
+    console.error('Error en SERVICIO consulta bancos/get. ', status, data);
+    $scope.msg = "Error consultando datos: SERVICIO de consulta de get_banco_detalles";
+  });
+  console.log('controlador -calc- getDatosBanco. fin');  
+  return $scope.datos_banco;
+};//getDatosBanco
+/**/
 
 
 //TODO.usar query de la bd
@@ -285,7 +396,7 @@ $scope.initData = function() {
 //usar variable lista_paises
 $scope.getNombrePais = function() {
   var paises = {PAR:'Paraguay', VEN:'Venezuela', URU:'Uruguay', ARG: Argentina};
-  var nombrePais1 = paises[$scope.data.cod_pais1];
+  var nombrePais1 = paises[$scope.data.cod_pais1]; //pais elegido en el select-list
 }
 
 
@@ -402,6 +513,15 @@ $scope.calcularConBaseUSD = function() {
 //incrementa variable 'paso', para que pase al siguiente vista/formulario
 $scope.goNext = function (){
   $scope.paso += 1;
+  var prog = $scope.paso;
+  actualizar_barraProgreso(prog);
+  /*
+  var xprogreso = document.getElementById("progreso_pasos");
+  console.log("xprogreso: " + xprogreso);
+  console.log("paso: " + $scope.paso);
+  console.log("progreso %: " + ($scope.paso* 20) );
+  xprogreso.setAttribute("value", "" + ($scope.paso* 20) );
+  */
   /*
   if ($scope.paso == 5){
     location.href = '#!/calcConfirm';
@@ -409,6 +529,30 @@ $scope.goNext = function (){
   }
   */
 };
+
+
+
+//decremente variable paso, para que vista cambia a siguiente
+$scope.goBack = function (){
+  $scope.paso -= 1;
+  var prog = $scope.paso;
+  actualizar_barraProgreso(prog);
+  /*
+  var xprogreso = document.getElementById("progreso_pasos");
+  xprogreso.setAttribute("value", "" + ($scope.paso* 20) );
+  */
+};
+
+function actualizar_barraProgreso(prog){
+  var xprogreso = document.getElementById("progreso_pasos");
+  console.log("xprogreso: " + xprogreso);
+  //console.log("paso: " + $scope.paso);
+  console.log("Progreso Valor: " + prog);
+  //xprogreso.setAttribute("value", "" + prog * 20); //TODO. quitar multip, dejar unidad
+  xprogreso.setAttribute("value", "" + prog);
+}
+
+
 
 //confirmar y grabar data
 $scope.confirm = function() {
@@ -480,10 +624,7 @@ $scope.save = function() {
     console.log('controlador-calc- funcion:insert - fin');
   };//insert
 
-//decremente variable paso, para que vista cambia a siguiente
-$scope.goBack = function (){
-  $scope.paso -= 1;
-};
+
 
 
 //aplicar porcentaje de comision a las tasas de cambios
@@ -517,9 +658,9 @@ $scope.calcularMontoDestinoconComision = function(){
   //ademas calcular: montolimite minimo y maximo permitidos
   //asignar todos esos datos a la variable data
 
-$scope.init_function = function(){
-  console.log('controlador -calc- init_function. inicio');
-  $scope.saludo = "Saludo desde CTRL CALCULADORA";
+  $scope.init_function = function(){
+    console.log('controlador -calc- init_function. inicio');
+    $scope.saludo = "Saludo desde CTRL CALCULADORA";
 
   //porc comision remesa
   $scope.porc_comision = 7.00;
@@ -543,12 +684,13 @@ $scope.init_function = function(){
 
     //estatus de pago, indica si el usuario ya realizó notificación de pago en origen
     $scope.pago = 0;
+    $scope.origen.formapago = ''; //'': ninguno, DEP': deposito bancario, 'G...':giro, 'WU':western union
 
     //valores de variables usados para pruebas
     //indicar cual es el paso inicial a mostrar en la calculadora
     //valor por defecto = 1
-    $scope.paso = 1; //1: inicio, 3 es la calculadora, 5: paso final
-    $scope.origen.formapago = 'DEP'; //deposito bancario
+    $scope.paso = 2; //1: inicio, 3 es la calculadora, 5: paso final
+    //$scope.origen.formapago = 'DEP'; //deposito bancario
 
 
 
@@ -574,32 +716,9 @@ $scope.init_function = function(){
 //asi la programacion sera mas sencilla
 
 
-
-//incorpora variable para subir imagenes
+//incorpora variable para subir imagenes/capturas
 angular.module('myApp.calcPago', ['angularFileUpload'])
 .controller('AdjuntosCtrl', function($scope, FileUploader) {
   $scope.uploader = new FileUploader();
   console.log('mensaje desde AppController con angularFileUpload')
-});
-
-
-
-/*
-//OPCION NO USADA AHORA
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/calcConfirm', {
-    templateUrl: 'calc/confirmar.html',
-    controller: 'ctrlCalcConfirm'
-  });
-}])
-*/
-
-/*TODO
-  //captura parametro - modo operacion
-  $scope.capturarParametro = function(){
-    $scope.codigo = $routeParams.codigo;
-    console.log('codigo: ' + $scope.codigo);
-    //TODO. validar parametro codigo:
-    //que no sea vacio, solo que tenga caracteres validos, longitud, no comience con un nro,etc...
-  }
-  */
+})

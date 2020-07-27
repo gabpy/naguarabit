@@ -1,6 +1,13 @@
 Naguarabit - Leeme
 ------------------------
 
+------------------------
+carpetas
+------------------------
+app: backend completo
+calc: sólo incluye funcionalidad de la calculadora para el front-end
+------------------------
+
 Requerimientos
 ------------------------
 PHP

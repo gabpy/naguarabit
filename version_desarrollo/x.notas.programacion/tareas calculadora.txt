@@ -1,0 +1,7 @@
+*AGREGAR USO DE COMISION
+
+*en el paso 2, ya grabar los datos, dejando estatus_origen en blanco
+
+*en el paso 3, cambiar estatus_origen a 'OK', cuando el usuario registre el pago
+
+*hacer un modulo para confirmar pago, que es llamado desde la lista de transacciones del cliente
