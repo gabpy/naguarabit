@@ -1,0 +1,68 @@
+    <!--div class=""-->
+    <h3>Validacion por filas (ngForm ngRepeat Issue)</h3>
+    <form name="testForm" novalidate style="width: 100%">
+      <table class="table table-condensed table-hover">
+        <thead>
+          <tr>
+            <th>Index</th>
+            <th>Name</th>
+            <th>Name Required</th>
+            <th>Name Invalid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in items">
+            <td>
+              {{$index}}
+            </td>
+            <!--name-->
+            <td ng-class="{ 'has-error' : item[$index] == ''} ">
+              <div ng-class="{ 'has-error' : testForm['itemName' + $index].$invalid}">
+
+                <input type="text" name="itemName{{$index}}" class="form-control" ng-model="item.name" size="20" required
+                ng-class="{ 'has-error' : testForm['itemName' + $index].$invalid}">
+
+                <div class="alert-danger"
+                ng-show="testForm['itemName' + $index].$invalid"
+                ng-messages="testForm['itemName'+$index].$error"
+                ng-if="testForm['nameRequired'+ $index].$modelValue == true"
+                >
+                <span ng-message="required">Name is required</span>
+              </div>
+            </div>
+          </td>
+
+          <!-- columna nameRequired de tipo hidden, indica si el campo name ES obligatorio-->
+          <td>
+            <input type="hidden" name="nameRequired{{$index}}" ng-model="item.nameRequired" class="form-control" />
+            <!--arma una variable con el valor del json -->
+            {{testForm['nameRequired'+$index].$modelValue == true}}
+          </td>
+
+          <!-- evaluacion de columna itemName, si es invalido para mostrar mensaje-->
+          <td>
+            {{testForm['itemName'+$index].$invalid}}
+          </td>
+
+
+        </tr>
+      </tbody>
+    </table>
+        <!--TODO. usar estos botones como ejemplo para los CRUD's de naguarabit
+      <div class="form-group">
+        <div class="col-sm-12">
+          <button class="btn btn-default" ng-click="deleteFirstItem()">Delete First Item</button>
+          <button class="btn btn-default" ng-click="fillInLastItem()">Fill In Last Item</button>
+        </div>
+      </div>
+    -->
+  </form>
+
+  <pre>testForm['itemName' + $index].$invalid: {{testForm['itemName' + $index]}}</pre>
+  <br>
+  <pre>testForm: {{testForm | json}}</pre>
+  <!--/div-->
+
+  <!--
+    colspan="3"
+    -->

@@ -1,0 +1,7 @@
+*agregar comision
+
+*agregar datos formas de pago, que traiga de la bd o del codigo por ahora
+
+*al confirmar transaccion> grabar y mostrar resumen, con nro de operacion generado
+
+*decidir > si solo mostrar la calculadora, o iniciar remesa de una vez
