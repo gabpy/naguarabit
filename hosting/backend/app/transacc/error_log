@@ -1,0 +1,6 @@
+[16-May-2021 14:44:50 America/New_York] PHP Warning:  mysqli::__construct(): (HY000/2002): Can't connect to MySQL server on '181.122.159.123' (115) in /home/naguarab/public_html/backend/app/bd/connection.php on line 14
+[16-May-2021 14:44:50 America/New_York] PHP Warning:  mysqli::set_charset(): Couldn't fetch mysqli in /home/naguarab/public_html/backend/app/bd/connection.php on line 20
+[16-May-2021 16:05:13 America/New_York] PHP Warning:  mysqli::__construct(): (HY000/2002): Can't connect to MySQL server on '181.122.159.123' (115) in /home/naguarab/public_html/backend/app/bd/connection.php on line 14
+[16-May-2021 16:05:13 America/New_York] PHP Warning:  mysqli::set_charset(): Couldn't fetch mysqli in /home/naguarab/public_html/backend/app/bd/connection.php on line 20
+[16-May-2021 16:05:40 America/New_York] PHP Warning:  mysqli::__construct(): (HY000/2002): Can't connect to MySQL server on '181.122.159.123' (115) in /home/naguarab/public_html/backend/app/bd/connection.php on line 14
+[16-May-2021 16:05:40 America/New_York] PHP Warning:  mysqli::set_charset(): Couldn't fetch mysqli in /home/naguarab/public_html/backend/app/bd/connection.php on line 20
